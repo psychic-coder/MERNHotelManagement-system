@@ -36,10 +36,6 @@ mongoose
 
 /*---------------------------------------Create Routes-------------------------------------------*/
 
-
-
-
-
 //Room management routes
 app.use("/room", require("./routes/employee-manager/RoomRoute"));
 
