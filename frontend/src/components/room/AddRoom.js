@@ -65,7 +65,7 @@ export default function AddRoom() {
     }
     return (
         <div className="content">
-            <h3>ADD New Room</h3><hr />
+            <h3>Add Room</h3><hr />
 
             <form class="row g-3 needs-validation" id="inputForm2" novalidate>
                 <div class="col-md-4 position-relative">

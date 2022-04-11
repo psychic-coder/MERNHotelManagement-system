@@ -181,7 +181,7 @@ export default function ViewOneRoom() {
 
 
             <div hidden={tebleStatus}>
-                <h3>Edit-Room-Details</h3><hr />
+                <h3>Edit/Delete Room</h3><hr />
                 <form class="row g-3 needs-validation" id="inputForm2" novalidate>
                     <div class="col-md-4 position-relative">
                         <label for="validationTooltip01" class="form-label">Name</label>
