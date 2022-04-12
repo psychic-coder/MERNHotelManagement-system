@@ -20,10 +20,10 @@ export default function ViewOneRoom() {
 
 
     const [roomname, setRoomname] = useState("");
-    const [noofguests, setNoofguests] = useState("");
+    const [noOfguests, setnoOfguests] = useState("");
     const [roomtype, setRoomtype] = useState("");
     const [facilities, setFacilities] = useState("");
-    const [rentpd, setRentpd] = useState("");
+    const [rentperday, setrentperday] = useState("");
     const [description, setDescription] = useState("");
     const [url1, setUrl1] = useState("");
     const [url2, setUrl2] = useState("");
@@ -38,10 +38,10 @@ export default function ViewOneRoom() {
             try {
                 const result = await (await axios.get(`http://localhost:5000/room/${id}`)).data.data
                 setRoomname(result[0].roomname);
-                setNoofguests(result[0].noofguests)
+                setnoOfguests(result[0].noOfguests)
                 setRoomtype(result[0].roomtype);
                 setFacilities(result[0].facilities)
-                setRentpd(result[0].rentpd);
+                setrentperday(result[0].rentperday);
                 setDescription(result[0].description)
                 setUrl1(result[0].url1);
                 setUrl2(result[0].url2)
@@ -64,7 +64,7 @@ export default function ViewOneRoom() {
         try {
             e.preventDefault();
             const newDetails = {
-                roomname, noofguests, roomtype, facilities, rentpd, description, url1, url2, url3
+                roomname, noOfguests, roomtype, facilities, rentperday, description, url1, url2, url3
             }
             const data = await (await axios.put(`http://localhost:5000/room/${id}`, newDetails)).status
             if (data === 200) {
@@ -193,8 +193,8 @@ export default function ViewOneRoom() {
 
                 <div class="col-md-6 position-relative">
                     <label for="validationTooltip02" class="form-label">No of Guests</label>
-                    <input type="number" class="form-control" id="validationTooltip02" required defaultValue={noofguests}
-                        onChange={(e) => { setNoofguests(e.target.value) }} disabled={textState}/>
+                    <input type="number" class="form-control" id="validationTooltip02" required defaultValue={noOfguests}
+                        onChange={(e) => { setnoOfguests(e.target.value) }} disabled={textState}/>
                 </div><br />
                
                 <div class="col-md-6 position-relative">
@@ -213,8 +213,8 @@ export default function ViewOneRoom() {
                 </div>
                 <div class="col-md-6 position-relative">
                     <label for="validationTooltip03" class="form-label">Rent per Day</label>
-                    <input type="text" class="form-control" id="validationTooltip03" disabled={textState} required defaultValue={rentpd}
-                        onChange={(e) => { setRentpd(e.target.value) }} />
+                    <input type="text" class="form-control" id="validationTooltip03" disabled={textState} required defaultValue={rentperday}
+                        onChange={(e) => { setrentperday(e.target.value) }} />
                 </div>
 
                 <div class="col-md-5 position-relative">
