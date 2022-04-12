@@ -28,12 +28,12 @@ router.get('/', async(req,res)=>{
 
 
 
-//update vehicles
-router.route("/updateroom/:id").put(async(req,res)=>{
+//update Rooms
+router.route("/:id").put(async(req,res)=>{
     let roomID = req.params.id;  //get unique user id from data base
 
-    const {roomname,noOfguests,roomtype,facilities,rentperday,description,imageurl1,imageurl2,imageurl3} = req.body;  // get update details from frontend
-    const imageurls = [imageurl1, imageurl2, imageurl3];
+    const {roomname,noOfguests,roomtype,facilities,rentperday,description,url1,url2,url3} = req.body;  // get update details from frontend
+    
 
     const updateRoom = {
         roomname,

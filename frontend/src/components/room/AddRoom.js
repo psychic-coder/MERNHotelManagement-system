@@ -11,10 +11,10 @@ export default function AddRoom() {
     const [isLoading, setLoading] = useState(false);
 
     const [roomname, setRoomname] = useState("");
-    const [noofguests, setNoofguests] = useState("");
+    const [noOfguests, setnoOfguests] = useState("");
     const [roomtype, setRoomtype] = useState("");
     const [facilities, setFacilities] = useState("");
-    const [rentpd, setRentpd] = useState("");
+    const [rentperday, setrentperday] = useState("");
     const [description, setDescription] = useState("");
     const [url1, setUrl1] = useState("");
     const [url2, setUrl2] = useState("");
@@ -24,7 +24,7 @@ export default function AddRoom() {
         setLoading(true)
         try {
             e.preventDefault();
-            if (!roomname || !noofguests || !roomtype || !facilities || !rentpd || !description || !url1 || !url2 || !url3) {
+            if (!roomname || !noOfguests || !roomtype || !facilities || !rentperday || !description || !url1 || !url2 || !url3) {
                 SoloAlert.alert({
                     title: "Oops!",
                     body: "Please fill all fields",
@@ -37,8 +37,9 @@ export default function AddRoom() {
                 });
             } else {
                 const newDetails = {
-                    roomname, noofguests, roomtype, facilities, rentpd, description, url1, url2,url3
+                    roomname, noOfguests, roomtype, facilities, rentperday, description, url1, url2,url3
                 }
+                
                 const data =  (await axios.post("http://localhost:5000/room/", newDetails)).status
                 if (data === 200) {
                     SoloAlert.alert({
@@ -68,17 +69,17 @@ export default function AddRoom() {
             <h3>Add Room</h3><hr />
 
             <form class="row g-3 needs-validation" id="inputForm2" novalidate>
-                <div class="col-md-4 position-relative">
+                <div class="col-md-6 position-relative">
                     <label for="validationTooltip01" class="form-label">Name</label>
                     <input type="text" class="form-control" id="validationTooltip01" required
                         onChange={(e) => { setRoomname(e.target.value) }} />
                 </div>
-                <div class="col-md-4 position-relative">
+                <div class="col-md-6 position-relative">
                     <label for="validationTooltip02" class="form-label">No of Guests</label>
                     <input type="number" class="form-control" id="validationTooltip02" required
-                        onChange={(e) => { setNoofguests(e.target.value) }} />
+                        onChange={(e) => { setnoOfguests(e.target.value) }} />
                 </div>
-                <div class="col-md-4 position-relative">
+                <div class="col-md-6 position-relative">
                     <label for="validationTooltip04" class="form-label">Type</label>
                     <select class="form-select" id="validationTooltip04" required onChange={(e) => { setRoomtype(e.target.value) }}>
                         <option selected disabled value="">Choose...</option>
@@ -88,7 +89,7 @@ export default function AddRoom() {
                 </div>
                
                
-                <div class="col-md-3 position-relative">
+                <div class="col-md-6 position-relative">
                     <label for="validationTooltip01" class="form-label">Facilities</label>
                     <input type="text" class="form-control" id="validationTooltip01" required
                         onChange={(e) => { setFacilities(e.target.value) }} />
@@ -97,31 +98,31 @@ export default function AddRoom() {
               
 
                 <br />
-                <div class="col-md-5 position-relative">
+                <div class="col-md-6 position-relative">
                     <label for="validationTooltip03" class="form-label">Rent per Day(Rs.)</label>
                     <input type="text" class="form-control" id="validationTooltip03" required
-                        onChange={(e) => { setRentpd(e.target.value) }} />
+                        onChange={(e) => { setrentperday(e.target.value) }} />
                 </div>
               
                
-                <div class="col-md-4 position-relative">
+                <div class="col-md-5 position-relative">
                     <label for="validationTooltip03" class="form-label">Description</label>
                     <input type="textarea" class="form-control" id="validationTooltip03" required
                         onChange={(e) => { setDescription(e.target.value) }} />
                 </div>
-                <div class="col-md-3 position-relative">
+                <div class="col-md-5 position-relative">
                     <label for="validationTooltip03" class="form-label">Url 1</label>
                     <input type="text" class="form-control" id="validationTooltip03" required
                         onChange={(e) => { setUrl1(e.target.value) }} />
                 </div>
 
-                <div class="col-md-3 position-relative">
+                <div class="col-md-5 position-relative">
                     <label for="validationTooltip03" class="form-label">Url 2</label>
                     <input type="text" class="form-control" id="validationTooltip03" required
                         onChange={(e) => { setUrl2(e.target.value) }} />
                 </div>
 
-                <div class="col-md-3 position-relative">
+                <div class="col-md-5 position-relative">
                     <label for="validationTooltip03" class="form-label">Url 3</label>
                     <input type="text" class="form-control" id="validationTooltip03" required
                         onChange={(e) => { setUrl3(e.target.value) }} />
