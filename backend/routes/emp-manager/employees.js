@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Employees = require("../models/employees");
+const Employees = require("../../models/emp-manager/employees");
 
 
 //add new employees to the system

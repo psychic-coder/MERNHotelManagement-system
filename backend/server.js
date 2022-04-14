@@ -14,7 +14,7 @@ app.use(cors({
     credentials:true
 }));
 
-const PORT = process.env.PORT||5000;
+const PORT = process.env.PORT||5001;
 app.listen(PORT,()=>{
     console.log(`Server start on port : ${PORT}`)
 })
@@ -41,10 +41,10 @@ app.use("/room", require("./routes/employee-manager/RoomRoute"));
 
 
 //api for employee managemet Thilan
-const employeesRouter = require('./routes/employees.js');
+const employeesRouter = require('./routes/emp-manager/employees.js');
 app.use('/employees',employeesRouter);
-//const paidsalariesRouter = require('./routes/paidsalaries.js');
-//app.use('/paidsalaries',paidsalariesRouter);
+const paidsalariesRouter = require('./routes/emp-manager/paidsalaries.js');
+app.use('/paidsalaries',paidsalariesRouter);
 //const adminloginRouter = require('./routes/adminlogin.js');
 //app.use('/adminlogin',adminloginRouter);
 
