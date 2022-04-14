@@ -14,7 +14,7 @@ app.use(cors({
     credentials:true
 }));
 
-const PORT = process.env.PORT||5000;
+const PORT = process.env.PORT||5001;
 app.listen(PORT,()=>{
     console.log(`Server start on port : ${PORT}`)
 })
@@ -39,7 +39,8 @@ mongoose
 //Room management routes
 app.use("/room", require("./routes/employee-manager/RoomRoute"));
 
-
+//Supplier management routes
+app.use("/supplier", require("./routes/supplier-manager/SupplierRoute"));
 
 
 
