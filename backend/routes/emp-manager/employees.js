@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Employees = require("../../models/emp-manager/employees");
 
 
-//add new employees to the system
+//add new employees to  system
 
 router.post('/',async(req,res)=>{
     try{

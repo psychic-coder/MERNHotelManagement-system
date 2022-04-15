@@ -2,6 +2,8 @@ const mongoose = require ('mongoose');
 
 const Schema = mongoose.Schema;
 
+//emp routes
+
 const employeeSchema = new Schema({
     empid: {
         type: String,
