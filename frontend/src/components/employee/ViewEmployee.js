@@ -25,7 +25,7 @@ export default function ViewAllEmp() {
     useEffect(() => {
         async function getDetails() {
             try {
-                const result = await (await axios.get("http://localhost:5000/employees/retrieve")).data.data
+                const result = await (await axios.get("http://localhost:5000/employees//")).data.data
                 setAllEmp(result);
                 setLoaderStatus(true)
                 setTableStatus(false)
@@ -40,7 +40,7 @@ export default function ViewAllEmp() {
 
     //This useEffect method is used to perform a searching function
     
-   /* 
+    
     useEffect(() => {
         setfiltered(
             AllEmp.filter(items => {
@@ -50,7 +50,7 @@ export default function ViewAllEmp() {
             })
         )
 
-    }, [search, AllEmp])*/
+    }, [search, AllEmp])
     
     
 
@@ -97,12 +97,13 @@ export default function ViewAllEmp() {
             <div hidden={tebleStatus}>{/* This part used to get all users data into table */}
                 <nav className="navbar bg-white" >
                     <div className="container-fluid">
-                        <h3>Employees</h3>
-                        <button type="button" class="btn btn-outline-danger" id="pdfButton" onClick={(e) => { generatePDF(AllEmp) }}><i className="fa fa-file-pdf"></i>  PDF</button>
+                        <h3>Employee Management</h3>
                         <form className="d-flex">
                             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"
                                 onChange={e => { setsearch(e.target.value) }} />
                         </form>
+                        <button type="button" class="btn btn-outline-danger" id="pdfButton" onClick={(e) => { generatePDF(AllEmp) }}><i className="fa fa-file-pdf"></i>  PDF</button>
+                        
                     </div>
                 </nav><hr />
 
@@ -117,25 +118,25 @@ export default function ViewAllEmp() {
                                 <th scope="col">Rent Per Day</th>
                                 <th scope="col">mobile</th>,
                                 <th scope="col">Bank</th>,
-                                <th scope="col">Branch</th>,
-                                <th scope="col">Action</th>
+                                <th scope="col">Branch</th>
                                 
-                                <th></th>
+                                
+                                
                             </tr>
                         </thead>
                         <tbody>
 
-                            {filtered.slice(0).reverse().map((Employee) => {
+                            {filtered.slice(0).reverse().map((Emp) => {
                                 return <tr>
-                                    <td>{Employee.empid}</td>
-                                    <td>{Employee.firstname}</td>
-                                    <td> {Employee.lastname} </td>
-                                    <td>{Employee.emptype}</td>
-                                    <td> {Employee.nic} </td>
-                                    <td>{Employee.mobile}</td>,
-                                    <td>{Employee.bank}</td>,
-                                    <td>{Employee.branch}</td>
-                                    <td><Link to={"/empManager/view/" + Employee._id} className="Edit"> <i className="far fa-edit"></i> </Link></td>
+                                    <td>{Emp.empid}</td>
+                                    <td>{Emp.firstname}</td>
+                                    <td>{Emp.lastname} </td>
+                                    <td>{Emp.emptype}</td>
+                                    <td>{Emp.nic} </td>
+                                    <td>{Emp.mobile}</td>,
+                                    <td>{Emp.bank}</td>,
+                                    <td>{Emp.branch}</td>
+                                    <td><Link to={"/empManager/view/" + Emp._id} className="Edit"> <i className="far fa-edit"></i> </Link></td>
                                 </tr>
 
                             })}

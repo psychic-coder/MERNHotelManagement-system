@@ -3,46 +3,29 @@ const Employees = require("../../models/emp-manager/employees");
 
 
 //add new employees to the system
-router.route("/add").post((req,res)=>{
 
-        const empid = req.body.empid;
-        const firstname = req.body.firstname;
-        const lastname = req.body.lastname;
-        const emptype = req.body.emptype;
-        const nic = req.body.nic;
-        const mobile = req.body.mobile;
-        const bank = req.body.bank;
-        const branch = req.body.branch;
+router.post('/',async(req,res)=>{
+    try{
+     
+        const savedEmployees = await Employees.create(req.body);
+        res.status(200).send({data : savedEmployees});
 
-        const newEmployees = new Employees({
-            empid,
-            firstname,
-            lastname,
-            emptype,
-            nic,
-            mobile,
-            bank,
-            branch
-        })
-        //pass employee object to mongodb database(Create function)
-        newEmployees.save().then(()=>{
-            //function execute if new employee details added to the database
-            res.json("New Employee Added.")
-        }).catch((err)=>{
-            //If error occurs this fuction execute
-            console.log(err)
-        })
+    }catch(err){
+        res.status(500).send({status : err});
+    }
 })
 
-//retrive data in employee db
-router.route("/retrieve").get((req,res)=>{
 
-    Employees.find().then((employees)=>{
-        res.json(employees)
-    }).catch((err)=>{
-        console.log(err)
-    })
-}) 
+router.get('/', async(req,res)=>{
+    try{
+        const allEmployees = await Employees.find();
+        res.status(200).send({data : allEmployees});
+    }catch(err){
+        res.status(500).send({data : err});
+    }
+})
+
+
 //update employee details
 router.route("/update/:id").put(async(req,res)=>{
     let Emp_id = req.params.id;
@@ -66,6 +49,7 @@ router.route("/update/:id").put(async(req,res)=>{
         res.status(500).send({status:"Error with updating data", error: err.message});
     })
 })
+
 //delete employee details
 router.route("/delete/:id").delete(async(req,res)=>{
     let Emp_id = req.params.id;
@@ -89,5 +73,8 @@ router.route("/get/:id").get(async(req,res)=>{
     })
 })
 
-
+//Test emp route
+router.route("/test").get((req,res)=>{
+    res.json("Employee function working");
+});
 module.exports = router;

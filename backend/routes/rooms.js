@@ -107,9 +107,7 @@ router.post("/addnewroom",async(req,res)=>{
          //console.log.(err.message);
             console.log(e);
             res.status(500).send({status:"Error in updating employee datails"})
-        })
-
-        
+        })   
 
     })
 

@@ -1,30 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import SoloAlert from 'soloalert'
 import axios from 'axios';
-//import validation from 'validator'
+import validation from 'validator'
 import '../Home.css'
 
 
 
-export default function AddRoom() {
+export default function AddEmployee() {
 
     const [isLoading, setLoading] = useState(false);
 
-    const [roomname, setRoomname] = useState("");
-    const [noOfguests, setnoOfguests] = useState("");
-    const [roomtype, setRoomtype] = useState("");
-    const [facilities, setFacilities] = useState("");
-    const [rentperday, setrentperday] = useState("");
-    const [description, setDescription] = useState("");
-    const [url1, setUrl1] = useState("");
-    const [url2, setUrl2] = useState("");
-    const [url3, setUrl3] = useState("");
+    const [empid, setempid] = useState("");
+    const [firstname, setfirstname] = useState("");
+    const [lastname, setlastname] = useState("");
+    const [emptype, setemptype] = useState("");
+    const [nic, setnic] = useState("");
+    const [mobile, setmobile] = useState("");
+    const [bank, setbank] = useState("");
+    const [branch, setbranch] = useState("");
 
     async function submitData(e) {
         setLoading(true)
         try {
             e.preventDefault();
-            if (!roomname || !noOfguests || !roomtype || !facilities || !rentperday || !description || !url1 || !url2 || !url3) {
+            if (!empid || !firstname || !lastname || !emptype || !nic || !mobile || !bank || !branch ) {
                 SoloAlert.alert({
                     title: "Oops!",
                     body: "Please fill all fields",
@@ -37,14 +36,14 @@ export default function AddRoom() {
                 });
             } else {
                 const newDetails = {
-                    roomname, noOfguests, roomtype, facilities, rentperday, description, url1, url2,url3
+                    empid, firstname, lastname, emptype, nic, mobile, bank, branch
                 }
                 
-                const data =  (await axios.post("http://localhost:5000/room/", newDetails)).status
+                const data =  (await axios.post("http://localhost:5000/employees//", newDetails)).status
                 if (data === 200) {
                     SoloAlert.alert({
                         title: "Welcome!",
-                        body: "New room added successfully",
+                        body: "New Employee added successfully",
                         icon: "success",
                         theme: "dark",
                         useTransparency: true,
@@ -66,67 +65,60 @@ export default function AddRoom() {
     }
     return (
         <div className="content">
-            <h3>Add Room</h3><hr />
+            <h3>Add Employee</h3><hr />
 
             <form class="row g-3 needs-validation" id="inputForm2" novalidate>
                 <div class="col-md-6 position-relative">
-                    <label for="validationTooltip01" class="form-label">Name</label>
+                    <label for="validationTooltip01" class="form-label">Emp ID</label>
                     <input type="text" class="form-control" id="validationTooltip01" required
-                        onChange={(e) => { setRoomname(e.target.value) }} />
+                        onChange={(e) => { setempid(e.target.value) }} />
                 </div>
                 <div class="col-md-6 position-relative">
-                    <label for="validationTooltip02" class="form-label">No of Guests</label>
-                    <input type="number" class="form-control" id="validationTooltip02" required
-                        onChange={(e) => { setnoOfguests(e.target.value) }} />
+                    <label for="validationTooltip02" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="validationTooltip02" required
+                        onChange={(e) => { setfirstname(e.target.value) }} />
                 </div>
                 <div class="col-md-6 position-relative">
-                    <label for="validationTooltip04" class="form-label">Type</label>
-                    <select class="form-select" id="validationTooltip04" required onChange={(e) => { setRoomtype(e.target.value) }}>
-                        <option selected disabled value="">Choose...</option>
-                        <option>Delux</option>
-                        <option>Non-Delux</option>
-                    </select>
+                    <label for="validationTooltip02" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="validationTooltip02" required
+                        onChange={(e) => { setlastname(e.target.value) }} />
                 </div>
                
                
                 <div class="col-md-6 position-relative">
-                    <label for="validationTooltip01" class="form-label">Facilities</label>
+                    <label for="validationTooltip01" class="form-label">Emp Type</label>
                     <input type="text" class="form-control" id="validationTooltip01" required
-                        onChange={(e) => { setFacilities(e.target.value) }} />
+                        onChange={(e) => { setemptype(e.target.value) }} />
                 </div>
 
               
 
                 <br />
                 <div class="col-md-6 position-relative">
-                    <label for="validationTooltip03" class="form-label">Rent per Day(Rs.)</label>
+                    <label for="validationTooltip03" class="form-label">NIC</label>
                     <input type="text" class="form-control" id="validationTooltip03" required
-                        onChange={(e) => { setrentperday(e.target.value) }} />
+                        onChange={(e) => { setnic(e.target.value) }} />
                 </div>
               
                
                 <div class="col-md-5 position-relative">
-                    <label for="validationTooltip03" class="form-label">Description</label>
+                    <label for="validationTooltip03" class="form-label">Mobile No</label>
                     <input type="textarea" class="form-control" id="validationTooltip03" required
-                        onChange={(e) => { setDescription(e.target.value) }} />
+                        onChange={(e) => { setmobile(e.target.value) }} />
                 </div>
                 <div class="col-md-5 position-relative">
-                    <label for="validationTooltip03" class="form-label">Url 1</label>
+                    <label for="validationTooltip03" class="form-label">Bank</label>
                     <input type="text" class="form-control" id="validationTooltip03" required
-                        onChange={(e) => { setUrl1(e.target.value) }} />
+                        onChange={(e) => { setbank(e.target.value) }} />
                 </div>
 
                 <div class="col-md-5 position-relative">
-                    <label for="validationTooltip03" class="form-label">Url 2</label>
+                    <label for="validationTooltip03" class="form-label">Branch</label>
                     <input type="text" class="form-control" id="validationTooltip03" required
-                        onChange={(e) => { setUrl2(e.target.value) }} />
+                        onChange={(e) => { setbranch(e.target.value) }} />
                 </div>
 
-                <div class="col-md-5 position-relative">
-                    <label for="validationTooltip03" class="form-label">Url 3</label>
-                    <input type="text" class="form-control" id="validationTooltip03" required
-                        onChange={(e) => { setUrl3(e.target.value) }} />
-                </div>
+                
                 
 
 
