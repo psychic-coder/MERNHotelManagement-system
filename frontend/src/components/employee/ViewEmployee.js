@@ -1,0 +1,151 @@
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import SoloAlert from 'soloalert'
+import validation from 'validator'
+import jspdf from 'jspdf'
+import "jspdf-autotable"
+
+export default function ViewAllEmp() {
+
+    const [loaderStatus, setLoaderStatus] = useState(false);
+    const [tebleStatus, setTableStatus] = useState(true);
+
+
+    const [search, setsearch] = useState("");
+    const [filtered, setfiltered] = useState([]);
+
+    const [AllEmp, setAllEmp] = useState([]);
+
+
+
+
+
+    //This useEffect function used to get all emp data
+    useEffect(() => {
+        async function getDetails() {
+            try {
+                const result = await (await axios.get("http://localhost:5000/employees/retrieve")).data.data
+                setAllEmp(result);
+                setLoaderStatus(true)
+                setTableStatus(false)
+            } catch (err) {
+                console.log(err.message)
+            }
+        }
+
+        getDetails();
+    })
+
+
+    //This useEffect method is used to perform a searching function
+    
+   /* 
+    useEffect(() => {
+        setfiltered(
+            AllEmp.filter(items => {
+                return items.empid.toLowerCase().includes(search.toLowerCase())
+                    || items.firstname.toLowerCase().includes(search.toLowerCase())
+                    || items.lastname.toLowerCase().includes(search.toLowerCase())
+            })
+        )
+
+    }, [search, AllEmp])*/
+    
+    
+
+
+    //This function used to generate a pdf
+    function generatePDF(tickets) {
+        const doc = new jspdf();
+        const tableColumn = ["Emp ID", "First Name", "Last Name", "Emp Type", "NIC", "Mobile No","Bank","Branch","Action"];
+        const tableRows = [];
+
+        tickets.slice(0).reverse().map(ticket => {
+            const ticketData = [
+                ticket.empid,
+                ticket.firstname,
+                ticket.lastname,
+                ticket.emptype,
+                ticket.nic,
+                ticket.mobile,
+                ticket.bank,
+                ticket.branch
+            ];
+            tableRows.push(ticketData);
+        });
+
+        doc.autoTable(tableColumn, tableRows, { styles: { fontSize: 8 }, startY: 35 });
+        const date = Date().split(" ");
+        const dateStr = date[1] + "-" + date[2] + "-" + date[3];
+        doc.text("Added-Employee-Report", 14, 15).setFontSize(12);
+        doc.text(`Report Generated Date - ${dateStr} `, 14, 23);
+        doc.save(`Employee-Details-Report_${dateStr}.pdf`);
+
+    }
+
+
+    return (
+        <div class="content">
+
+            <div class="d-flex justify-content-center" >
+                <div class="spinner-border" role="status" style={{ width: "10rem", height: "10rem", marginTop: "100px" }} hidden={loaderStatus}>
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+
+            <div hidden={tebleStatus}>{/* This part used to get all users data into table */}
+                <nav className="navbar bg-white" >
+                    <div className="container-fluid">
+                        <h3>Employees</h3>
+                        <button type="button" class="btn btn-outline-danger" id="pdfButton" onClick={(e) => { generatePDF(AllEmp) }}><i className="fa fa-file-pdf"></i>  PDF</button>
+                        <form className="d-flex">
+                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                                onChange={e => { setsearch(e.target.value) }} />
+                        </form>
+                    </div>
+                </nav><hr />
+
+                <div className="bodyContent">
+                    <table className="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">No of Guests</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">emptype</th>
+                                <th scope="col">Rent Per Day</th>
+                                <th scope="col">mobile</th>,
+                                <th scope="col">Bank</th>,
+                                <th scope="col">Branch</th>,
+                                <th scope="col">Action</th>
+                                
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {filtered.slice(0).reverse().map((Employee) => {
+                                return <tr>
+                                    <td>{Employee.empid}</td>
+                                    <td>{Employee.firstname}</td>
+                                    <td> {Employee.lastname} </td>
+                                    <td>{Employee.emptype}</td>
+                                    <td> {Employee.nic} </td>
+                                    <td>{Employee.mobile}</td>,
+                                    <td>{Employee.bank}</td>,
+                                    <td>{Employee.branch}</td>
+                                    <td><Link to={"/empManager/view/" + Employee._id} className="Edit"> <i className="far fa-edit"></i> </Link></td>
+                                </tr>
+
+                            })}
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+            </div>
+        </div>
+    )
+}

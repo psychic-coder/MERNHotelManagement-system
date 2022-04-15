@@ -1,5 +1,7 @@
 .navbar{
+    border-radius: 25px;
     background-color: black !important;
+    width: 100%;
 }
 
 .nav-link{
@@ -8,9 +10,13 @@
 
 .navbar-brand{
     color: white !important;
-    margin-left: 170px !important;
+    margin-left: 50px !important;
 }
 
 .navbar-nav{
     margin-left: auto !important;
+}
+.top-nav{
+    padding-left: 180px;
+    margin-top:5px;
 }

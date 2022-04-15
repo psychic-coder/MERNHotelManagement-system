@@ -6,6 +6,7 @@ export default function Navbar() {
 
 
     return (
+        <div class="top-nav">
         <nav class="navbar navbar-expand-lg ">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Hotel Elite.</a>
@@ -25,6 +26,7 @@ export default function Navbar() {
                 </div>
             </div>
         </nav>
+        </div>
     )
 
 }
