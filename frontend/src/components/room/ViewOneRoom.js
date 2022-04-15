@@ -135,7 +135,7 @@ export default function ViewOneRoom() {
                             theme: "dark",
                             useTransparency: true,
                             onOk: function () {
-                                window.location = "#"
+                                window.location = "/roommanager/view"
                             },
 
                         });

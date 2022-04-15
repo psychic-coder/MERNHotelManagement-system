@@ -108,7 +108,7 @@ export default function ViewAllRooms() {
                                 <th scope="col">No of Guests</th>
                                 <th scope="col">Type</th>
                                 <th scope="col">Facilities</th>
-                                <th scope="col">Rent Per Day</th>
+                                <th scope="col">Rent Per Day(Rs)</th>
                                 <th scope="col">Description</th>
                                 <th></th>
                             </tr>
