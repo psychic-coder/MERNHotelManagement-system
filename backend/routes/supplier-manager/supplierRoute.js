@@ -79,13 +79,17 @@ router.delete('/:id',async(req,res)=>{
     try{
         const id = req.params.id;
         const removedSupplier = await Supplier.findByIdAndDelete(id)
-        res.status(200).send({data : removedSupplier});
+        res.status(200).send({status: "Supplier Details Deleted"});
     
 
     }catch(err){
         res.status(500).send({data : err});
+                res.status(500).send({status:"Error with delete details", error: err.message});
+
     }
 
 })
+
+
 
 module.exports = router;
