@@ -60,11 +60,13 @@ router.route("/:id").put(async(req,res)=>{
 
 
 //This route used to view specific supplier details 
+
+
 router.get('/:id',async(req,res)=>{
     try{
         let id = req.params.id;
-        const supplier = await supplier.find({_id : id})
-        res.status(200).send({data : room});
+        const supplier = await Supplier.find({_id : id})
+        res.status(200).send({data : removedSupplier});
 
     }catch(err){
         res.status(500).send({data : err});
@@ -79,7 +81,7 @@ router.delete('/:id',async(req,res)=>{
     try{
         const id = req.params.id;
         const removedSupplier = await Supplier.findByIdAndDelete(id)
-        res.status(200).send({status: "Supplier Details Deleted"});
+        res.status(200).send({data : removedSupplier});
     
 
     }catch(err){
@@ -89,7 +91,6 @@ router.delete('/:id',async(req,res)=>{
     }
 
 })
-
 
 
 module.exports = router;
