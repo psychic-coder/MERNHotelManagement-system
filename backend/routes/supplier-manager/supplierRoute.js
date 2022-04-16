@@ -66,7 +66,7 @@ router.get('/:id',async(req,res)=>{
     try{
         let id = req.params.id;
         const supplier = await Supplier.find({_id : id})
-        res.status(200).send({data : removedSupplier});
+        res.status(200).send({data : supplier});
 
     }catch(err){
         res.status(500).send({data : err});
@@ -83,10 +83,9 @@ router.delete('/:id',async(req,res)=>{
         const removedSupplier = await Supplier.findByIdAndDelete(id)
         res.status(200).send({data : removedSupplier});
     
-
     }catch(err){
         res.status(500).send({data : err});
-                res.status(500).send({status:"Error with delete details", error: err.message});
+
 
     }
 
