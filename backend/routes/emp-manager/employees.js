@@ -27,7 +27,7 @@ router.get('/', async(req,res)=>{
 
 
 //update employee details
-router.route("/update/:id").put(async(req,res)=>{
+router.route("/:id").put(async(req,res)=>{
     let Emp_id = req.params.id;
     const { empid,firstname,lastname,emptype,nic,mobile,bank,branch} = req.body;
 
@@ -42,35 +42,43 @@ router.route("/update/:id").put(async(req,res)=>{
         branch
     }
 
-    Employees.findByIdAndUpdate(Emp_id,updateEmployee).then((UpdateLick)=>{
-        res.json("Success");
-    }).catch((err)=>{
-        console.log(err);
-        res.status(500).send({status:"Error with updating data", error: err.message});
+    const update = await Employees.findByIdAndUpdate(Emp_id,updateEmployee ).then(()=>{
+        res.status(200).send({status: "Employee details are updated"});
+    }).catch((e)=>{
+     //console.log.(err.message);
+        console.log(e);
+        res.status(500).send({status:"Error in updating employee datails"})
     })
+
 })
 
 //delete employee details
-router.route("/delete/:id").delete(async(req,res)=>{
-    let Emp_id = req.params.id;
+router.delete('/:id',async(req,res)=>{
 
-    await Employees.findByIdAndDelete(Emp_id).then(()=>{
-        res.status(200).send({status: "Employee details Deleted"});
-    }).catch((err)=>{
-        console.log(err.message);
-        res.status(500).send({status:"Error with delete details", error: err.message});
+    try{
+        const id = req.params.id;
+        const removedEmp = await Employees.findByIdAndDelete(id)
+        res.status(200).send({data : removedEmp});
+    
 
-    })
+    }catch(err){
+        res.status(500).send({data : err});
+    }
+
 })
+
+
 //get one emp
-router.route("/get/:id").get(async(req,res)=>{
-    let Emp_id = req.params.id;
-    Employees.findById(Emp_id).then((employees)=>{
-        res.json(employees)
-    }).catch(()=>{
-        console.log(err.message);
-        res.status(500).send({status: "Error with get employee details", error: err.message});
-    })
+router.get('/:id',async(req,res)=>{
+    try{
+        let id = req.params.id;
+        const employee = await Employees.find({_id : id})
+        res.status(200).send({data : employee});
+
+    }catch(err){
+        res.status(500).send({data : err});
+    }
+
 })
 
 //Test emp route

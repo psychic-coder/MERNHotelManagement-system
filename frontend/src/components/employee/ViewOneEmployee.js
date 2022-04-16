@@ -35,7 +35,7 @@ export default function ViewOneEmployee() {
     useEffect(() => {
         async function getDetails() {
             try {
-                const result = await (await axios.get(`http://localhost:5000/employees/get/${id}`)).data.data
+                const result = await (await axios.get(`http://localhost:5000/employees/${id}`)).data.data
                 setempid(result[0].empid);
                 setfirstname(result[0].firstname);
                 setlastname(result[0].lastname);
@@ -66,7 +66,7 @@ export default function ViewOneEmployee() {
             const newDetails = {
                 empid, firstname, lastname, emptype, nic, mobile, bank, branch
             }
-            const data = await (await axios.put(`http://localhost:5000/employee/put/${id}`, newDetails)).status
+            const data = await (await axios.put(`http://localhost:5000/employees/${id}`, newDetails)).status
             if (data === 200) {
                 SoloAlert.alert({
                     title: "Welcome!",
@@ -124,7 +124,7 @@ export default function ViewOneEmployee() {
             onOk: async function () {
 
                 try {
-                    const result = await (await axios.delete(`http://localhost:5000/employee/delete/${id}`)).status
+                    const result = await (await axios.delete(`http://localhost:5000/employees/${id}`)).status
                     console.log(result)
 
                     if (result === 200) {
@@ -187,17 +187,17 @@ export default function ViewOneEmployee() {
                 <form class="row g-3 needs-validation" id="inputForm2" novalidate>
                 <div class="col-md-6 position-relative">
                     <label for="validationTooltip01" class="form-label">Emp ID</label>
-                    <input type="text" class="form-control" id="validationTooltip01" required
+                    <input type="text" class="form-control" id="validationTooltip01" required defaultValue={empid}
                         onChange={(e) => { setempid(e.target.value) }} disabled={textState}/>
                 </div> 
                 <div class="col-md-6 position-relative">
                     <label for="validationTooltip02" class="form-label">First Name</label>
-                    <input type="text" class="form-control" id="validationTooltip02" required
+                    <input type="text" class="form-control" id="validationTooltip02" required defaultValue={firstname}
                         onChange={(e) => { setfirstname(e.target.value) }} disabled={textState}/>
                 </div>
                 <div class="col-md-6 position-relative">
                     <label for="validationTooltip02" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" id="validationTooltip02" required
+                    <input type="text" class="form-control" id="validationTooltip02" required defaultValue={lastname}
                         onChange={(e) => { setlastname(e.target.value) }} disabled={textState}/>
                 </div>
                
@@ -207,7 +207,7 @@ export default function ViewOneEmployee() {
                 <div class="col-md-6 position-relative">
                     <label for="validationTooltip04" class="form-label">Emp Type</label>
                     <select class="form-select" id="validationTooltip04" required onChange={(e) => { setemptype(e.target.value) }} disabled={textState}>
-                        <option selected disabled value="">Choose...</option>
+                    <option selected disabled>{emptype}</option>
                         <option>Part-time</option>
                         <option>Full-time</option>
                         <option>Seasonal </option>
@@ -221,14 +221,14 @@ export default function ViewOneEmployee() {
                 <br />
                 <div class="col-md-6 position-relative">
                     <label for="validationTooltip03" class="form-label">NIC</label>
-                    <input type="text" class="form-control" id="validationTooltip03" required
+                    <input type="text" class="form-control" id="validationTooltip03" required defaultValue={nic}
                         onChange={(e) => { setnic(e.target.value) }} disabled={textState}/>
                 </div>
               
                
                 <div class="col-md-6 position-relative">
                     <label for="validationTooltip03" class="form-label">Mobile No</label>
-                    <input type="textarea" class="form-control" id="validationTooltip03" required
+                    <input type="textarea" class="form-control" id="validationTooltip03" required defaultValue={mobile}
                         onChange={(e) => { setmobile(e.target.value) }} disabled={textState}/>
 
 
@@ -245,7 +245,7 @@ export default function ViewOneEmployee() {
                 <div class="col-md-6 position-relative">
                     <label for="validationTooltip04" class="form-label">Bank</label>
                     <select class="form-select" id="validationTooltip04" required onChange={(e) => { setbank(e.target.value) }} disabled={textState}>
-                        <option selected disabled value="">Choose...</option>
+                    <option selected disabled>{bank}</option>
                         <option>BOC</option>
                         <option>HNB</option>
                         <option>DFCC</option>
@@ -263,7 +263,7 @@ export default function ViewOneEmployee() {
                 <div class="col-md-6 position-relative">
                     <label for="validationTooltip04" class="form-label">Branch</label>
                     <select class="form-select" id="validationTooltip04" required onChange={(e) => { setbranch(e.target.value) }} disabled={textState}>
-                        <option selected disabled value="">Choose...</option>
+                    <option selected disabled>{branch}</option>
                         <option>GALLE</option>
                         <option>GALLE CITY</option>
                         <option>COLOMBO FORT</option>

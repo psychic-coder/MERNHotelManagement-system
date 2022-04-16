@@ -115,7 +115,7 @@ export default function ViewAllEmp() {
                                 <th scope="col">No of Guests</th>
                                 <th scope="col">Type</th>
                                 <th scope="col">emptype</th>
-                                <th scope="col">Rent Per Day</th>
+                                <th scope="col">NIC</th>
                                 <th scope="col">mobile</th>,
                                 <th scope="col">Bank</th>,
                                 <th scope="col">Branch</th>
