@@ -12,7 +12,7 @@ import ViewOneRoom from './components/room/ViewOneRoom'
 import EmpDetailsSideNav from './components/layouts/EmpDetailsSideNav'
 import ViewEmployee from './components/employee/ViewEmployee'
 import AddEmployee from './components/employee/AddEmployee'
-
+import ViewOneEmployee from './components/employee/ViewOneEmployee'
 
 
 
@@ -36,7 +36,7 @@ function App() {
       <Route path = "/empManager"><EmpDetailsSideNav/></Route>
       <Route exact path = "/empManager/add"><AddEmployee/></Route>
       <Route exact path = "/empManager/view"><ViewEmployee/></Route>
-      {/*<Route exact path = "/empManager/view/:id"><ViewOneRoom/></Route>*/}
+      {<Route exact path = "/empManager/view/:id"><ViewOneEmployee/></Route>}
 
     </BrowserRouter>
   );

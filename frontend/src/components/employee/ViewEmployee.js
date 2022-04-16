@@ -58,7 +58,7 @@ export default function ViewAllEmp() {
     //This function used to generate a pdf
     function generatePDF(tickets) {
         const doc = new jspdf();
-        const tableColumn = ["Emp ID", "First Name", "Last Name", "Emp Type", "NIC", "Mobile No","Bank","Branch","Action"];
+        const tableColumn = ["Emp ID", "First Name", "Last Name", "Emp Type", "NIC", "Mobile No","Bank","Branch"];
         const tableRows = [];
 
         tickets.slice(0).reverse().map(ticket => {

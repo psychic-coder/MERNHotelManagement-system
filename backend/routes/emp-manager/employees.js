@@ -29,11 +29,11 @@ router.get('/', async(req,res)=>{
 //update employee details
 router.route("/update/:id").put(async(req,res)=>{
     let Emp_id = req.params.id;
-    const { empid,firstName,lastname,emptype,nic,mobile,bank,branch} = req.body;
+    const { empid,firstname,lastname,emptype,nic,mobile,bank,branch} = req.body;
 
     const updateEmployee = {
         empid,
-        firstName,
+        firstname,
         lastname,
         emptype,
         nic,

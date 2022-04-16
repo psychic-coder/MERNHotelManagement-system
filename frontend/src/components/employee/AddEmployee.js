@@ -3,7 +3,8 @@ import SoloAlert from 'soloalert'
 import axios from 'axios';
 import validation from 'validator'
 import '../Home.css'
-
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 
 export default function AddEmployee() {
@@ -18,6 +19,8 @@ export default function AddEmployee() {
     const [mobile, setmobile] = useState("");
     const [bank, setbank] = useState("");
     const [branch, setbranch] = useState("");
+
+   // const [value, setValue] = useState()
 
     async function submitData(e) {
         setLoading(true)
@@ -85,13 +88,21 @@ export default function AddEmployee() {
                 </div>
                
                
+        
+                
                 <div class="col-md-6 position-relative">
-                    <label for="validationTooltip01" class="form-label">Emp Type</label>
-                    <input type="text" class="form-control" id="validationTooltip01" required
-                        onChange={(e) => { setemptype(e.target.value) }} />
-                </div>
+                    <label for="validationTooltip04" class="form-label">Emp Type</label>
+                    <select class="form-select" id="validationTooltip04" required onChange={(e) => { setemptype(e.target.value) }}>
+                        <option selected disabled value="">Choose...</option>
+                        <option>Part-time</option>
+                        <option>Full-time</option>
+                        <option>Seasonal </option>
+                        <option>Temporary </option>
+                        <option>Leased </option>
+                        <option>Permanent </option>
 
-              
+                    </select>
+                </div>
 
                 <br />
                 <div class="col-md-6 position-relative">
@@ -101,21 +112,54 @@ export default function AddEmployee() {
                 </div>
               
                
-                <div class="col-md-5 position-relative">
+                <div class="col-md-6 position-relative">
                     <label for="validationTooltip03" class="form-label">Mobile No</label>
-                    <input type="textarea" class="form-control" id="validationTooltip03" required
-                        onChange={(e) => { setmobile(e.target.value) }} />
-                </div>
-                <div class="col-md-5 position-relative">
-                    <label for="validationTooltip03" class="form-label">Bank</label>
-                    <input type="text" class="form-control" id="validationTooltip03" required
-                        onChange={(e) => { setbank(e.target.value) }} />
+                    {<input type="textarea" class="form-control" id="validationTooltip03" required
+                        onChange={(e) => { setmobile(e.target.value) }} />}
+
+
+                    {/*
+                    <PhoneInput  id="validationTooltip03"
+                    placeholder="Enter phone number"
+                    value={value}
+                    onChange={(e) => { setValue(e.target.value)}}/>
+                    */}
+
                 </div>
 
-                <div class="col-md-5 position-relative">
+
+                <div class="col-md-6 position-relative">
+                    <label for="validationTooltip04" class="form-label">Bank</label>
+                    <select class="form-select" id="validationTooltip04" required onChange={(e) => { setbank(e.target.value) }}>
+                        <option selected disabled value="">Choose...</option>
+                        <option>BOC</option>
+                        <option>HNB</option>
+                        <option>DFCC</option>
+                        <option>SAMPATH</option>
+                        <option>PEOPLES</option>
+                    </select>
+                </div>
+
+
+                {/*<div class="col-md-6 position-relative">
                     <label for="validationTooltip03" class="form-label">Branch</label>
                     <input type="text" class="form-control" id="validationTooltip03" required
                         onChange={(e) => { setbranch(e.target.value) }} />
+                </div>*/}
+                <div class="col-md-6 position-relative">
+                    <label for="validationTooltip04" class="form-label">Branch</label>
+                    <select class="form-select" id="validationTooltip04" required onChange={(e) => { setbranch(e.target.value) }}>
+                        <option selected disabled value="">Choose...</option>
+                        <option>GALLE</option>
+                        <option>GALLE CITY</option>
+                        <option>COLOMBO FORT</option>
+                        <option>KOLLUPITIYA</option>
+                        <option>MATARA</option>
+                        <option>JAFFNA</option>
+                        <option>GAMPAHA</option>
+                        <option>KURUNEGALA</option>
+                        <option>AMBALAGODA</option>
+                    </select>
                 </div>
 
                 
