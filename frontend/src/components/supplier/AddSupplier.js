@@ -38,7 +38,7 @@ export default function AddSupplier() {
                     supname, email, contactnumber, nic, category , companyname , companyaddress
                 }
                 
-                const data =  (await axios.post("http://localhost:5001/supplier/", newDetails)).status
+    const data =  (await axios.post("http://localhost:5001/supplier/", newDetails)).status
                 if (data === 200) {
                     SoloAlert.alert({
                         title: "Welcome!",
@@ -104,12 +104,12 @@ export default function AddSupplier() {
                 </div>
               
                
-                <div class="col-md-5 position-relative">
+                <div class="col-md-6 position-relative">
                     <label for="validationTooltip03" class="form-label">Company Name</label>
                     <input type="textarea" class="form-control" id="validationTooltip03" required
                         onChange={(e) => { setCompanyname(e.target.value) }} />
                 </div>
-                <div class="col-md-5 position-relative">
+                <div class="col-md-6 position-relative">
                     <label for="validationTooltip03" class="form-label">Company Address</label>
                     <input type="text" class="form-control" id="validationTooltip03" required
                         onChange={(e) => { setCompanyaddress(e.target.value) }} />

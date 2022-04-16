@@ -10,8 +10,8 @@ import ViewOneRoom from './components/room/ViewOneRoom'
 
 import Supsidenav from './components/layouts/Supsidenav'
 import AddSupplier from './components/supplier/AddSupplier'
-
-
+import ViewSuppliers from './components/supplier/ViewAllSuppliers'
+import ViewOneSupplier from './components/supplier/ViewOneSupplier'
 
 
 
@@ -30,10 +30,11 @@ function App() {
       <Route exact path = "/roommanager/view"><ViewRooms/></Route>
       <Route exact path = "/roomManager/view/:id"><ViewOneRoom/></Route>
 
-       {/* Supplier Management Routes */}
-       <Route path = "/supmanager"><Supsidenav/></Route>
-       <Route exact path = "/supmanager/add"><AddSupplier/></Route>
-
+      {/* Supplier Management Routes */}
+      <Route path = "/supmanager"><Supsidenav/></Route>
+      <Route exact path = "/supmanager/add"><AddSupplier/></Route>
+      <Route exact path = "/supmanager/view"><ViewSuppliers/></Route>
+      <Route exact path = "/supManager/view/:id"><ViewOneSupplier/></Route>
 
 
     </BrowserRouter>
