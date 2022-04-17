@@ -24,7 +24,7 @@ router.get('/', async(req,res)=>{
 })
 
 //update inventory
-router.route("/updateinventory/:id").put(async(req,res)=>{
+router.route("/:id").put(async(req,res)=>{
     let itemID = req.params.id;  //get unique user id from data base
 
     const {itemid,itemname,itemmodel,itemcategory,restocklevel,supplier,quantity,unitprice,itemdate} = req.body;  // get update details from frontend
@@ -52,6 +52,18 @@ router.route("/updateinventory/:id").put(async(req,res)=>{
 
 })
 
+//This route used to view specific Inventory details 
+router.get('/:id',async(req,res)=>{
+    try{
+        let id = req.params.id;
+        const inventory = await Inventory.find({_id : id})
+        res.status(200).send({data : inventory});
+
+    }catch(err){
+        res.status(500).send({data : err});
+    }
+
+})
 
 //This route used to delete inventory from table
 router.delete('/:id',async(req,res)=>{
