@@ -5,6 +5,7 @@ import SoloAlert from 'soloalert'
 import validation from 'validator'
 import jspdf from 'jspdf'
 import "jspdf-autotable"
+import '../Home.css'
 
 export default function ViewAllEmp() {
 
@@ -16,6 +17,9 @@ export default function ViewAllEmp() {
     const [filtered, setfiltered] = useState([]);
 
     const [AllEmp, setAllEmp] = useState([]);
+
+    //const [active, setActive] = useState(types[0]);
+    //const types = ["Cash", "Credit Card", "Bitcoin"];
 
 
 
@@ -105,7 +109,10 @@ export default function ViewAllEmp() {
                         <button type="button" class="btn btn-outline-danger" id="pdfButton" onClick={(e) => { generatePDF(AllEmp) }}><i className="fa fa-file-pdf"></i>  PDF</button>
                         
                     </div>
-                </nav><hr />
+                </nav>
+             
+     
+                <hr />
 
                 <div className="bodyContent">
                     <table className="table table-dark table-hover">
@@ -150,3 +157,4 @@ export default function ViewAllEmp() {
         </div>
     )
 }
+

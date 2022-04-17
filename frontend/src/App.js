@@ -1,6 +1,7 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Topnav from './components/layouts/topnav'
 import EMPSideNav from './components/layouts/EMPsidenav'
+import React, { Component }  from 'react';
 
 import CusNavigation from './components/layouts/Navbar'
 import RMsidenav from './components/layouts/Roomsidenav'

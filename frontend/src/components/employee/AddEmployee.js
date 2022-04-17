@@ -166,11 +166,8 @@ export default function AddEmployee() {
                 
 
 
-                <div class="col-12" style={{ marginTop: "50px", marginLeft: "65%" }}>
-                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal" onClick={(e) => { clear(e) }}><i class="fa fa-ban"></i> Clear form</button>&nbsp;&nbsp;&nbsp;
-                    <button type="submit" class="btn btn-primary" onClick={(e) => { submitData(e) }}
-                        disabled={isLoading} ><i class="fa fa-file-export"></i>  {isLoading ? 'Sending..' : 'Submit form'}</button>
-                </div>
+               
+               
             </form>
 
         </div>
