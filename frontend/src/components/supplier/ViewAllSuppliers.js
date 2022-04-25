@@ -45,6 +45,7 @@ export default function ViewAllSuppliers() {
                 return items.supname.toLowerCase().includes(search.toLowerCase())
                     || items.email.toLowerCase().includes(search.toLowerCase())
                     || items.contactnumber.toLowerCase().includes(search.toLowerCase())
+                    
             })
         )
 
@@ -54,11 +55,12 @@ export default function ViewAllSuppliers() {
     //This function used to generate a pdf
     function generatePDF(tickets) {
         const doc = new jspdf();
-        const tableColumn = ["Supplier Name", "Emails", "Contact Number", "Nic", "Category", "Company Name" ," CompanyAddress"];
+        const tableColumn = ["Sup ID","Supplier Name", "Emails", "Contact Number", "Nic", "Category", "Company Name" ," CompanyAddress"];
         const tableRows = [];
 
         tickets.slice(0).reverse().map(ticket =>{
             const ticketData = [
+                ticket.supid, 
                 ticket.supname,
                 ticket.email,
                 ticket.contactnumber,
@@ -104,7 +106,8 @@ export default function ViewAllSuppliers() {
                 <div className="bodyContent">
                     <table className="table table-dark table-hover">
                         <thead>
-                            <tr>
+                            <tr> 
+                                <th scope="col">Sup ID</th>
                                 <th scope="col">Supplier Name</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Contact Number</th>
@@ -118,6 +121,7 @@ export default function ViewAllSuppliers() {
 
                             {filtered.slice(0).reverse().map((Supplier) => {
                                 return <tr>
+                                    <td>{Supplier.supid}</td>
                                     <td>{Supplier.supname}</td>
                                     <td>{Supplier.email}</td>
                                     <td>{Supplier.contactnumber} </td>

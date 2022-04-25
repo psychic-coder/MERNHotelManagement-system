@@ -3,6 +3,8 @@ import SoloAlert from 'soloalert'
 import { useParams } from "react-router";
 import axios from 'axios';
 
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 export default function ViewOneSupplier() {
 
@@ -17,8 +19,7 @@ export default function ViewOneSupplier() {
     const [loaderStatus, setLoaderStatus] = useState(false);
     const [tebleStatus, setTableStatus] = useState(true);
 
-
-
+    const [supid, setsupid] = useState(""); 
     const [supname, setsupname] = useState("");
     const [email, setemail] = useState("");
     const [contactnumber, setcontactnumber] = useState("");
@@ -36,7 +37,8 @@ export default function ViewOneSupplier() {
         async function getDetails() {
             try {
                 const result = await (await axios.get(`http://localhost:5001/supplier/${id}`)).data.data
-                
+
+                setsupid(result[0].supid); 
                 setsupname(result[0].supname);
                 setemail(result[0].email)
                 setcontactnumber(result[0].contactnumber);
@@ -63,7 +65,7 @@ export default function ViewOneSupplier() {
         try {
             e.preventDefault();
             const newDetails = {
-                supname, email, contactnumber, nic, category, companyname, companyaddress
+                supid,supname, email, contactnumber, nic, category, companyname, companyaddress
             }
             const data = await (await axios.put(`http://localhost:5001/supplier/${id}`, newDetails)).status
             if (data === 200) {
@@ -187,6 +189,12 @@ export default function ViewOneSupplier() {
                 <h3><h3>Edit/Delete Suplier</h3><hr /></h3><hr />
                 <form class="row g-3 needs-validation" id="inputForm2" novalidate>
                 <div class="col-md-6 position-relative">
+                    <label for="validationTooltip01" class="form-label">Sup ID</label>
+                    <input type="text" class="form-control" id="validationTooltip01" required defaultValue={supid}
+                        onChange={(e) => { setsupid(e.target.value) }} disabled={textState}/>
+                </div>
+
+                <div class="col-md-6 position-relative">
                     <label for="validationTooltip01" class="form-label">Name</label>
                     <input type="text" class="form-control" id="validationTooltip01" required defaultValue={supname}
                         onChange={(e) => { setsupname(e.target.value) }} disabled={textState}/>
@@ -200,8 +208,15 @@ export default function ViewOneSupplier() {
                
                 <div class="col-md-6 position-relative">
                 <label for="validationTooltip02" class="form-label">Contact Number</label>
-                    <input type="text" class="form-control" id="validationTooltip02" required defaultValue={contactnumber}
-                        onChange={(e) => { setcontactnumber(e.target.value) }} disabled={textState}/>
+                    {/*<input type="text" class="form-control" id="validationTooltip02" required defaultValue={contactnumber}
+                        onChange={(e) => { setcontactnumber(e.target.value) }} disabled={textState}/>*/}
+
+                <PhoneInput
+                placeholder="Enter phone number" type="textarea" class="form-control" id="validationTooltip03"
+                value={contactnumber}
+                onChange={setcontactnumber}/>
+
+                
                 </div><br />
 
                    

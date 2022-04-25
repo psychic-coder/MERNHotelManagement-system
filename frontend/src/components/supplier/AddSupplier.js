@@ -4,12 +4,15 @@ import axios from 'axios';
 import validation from 'validator'
 import '../Home.css'
 
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 
 export default function AddSupplier() {
 
     const [isLoading, setLoading] = useState(false);
 
+    const [supid, setSupid] = useState("");
     const [supname, setSupname] = useState("");
     const [email, setEmail] = useState("");
     const [contactnumber, setContactnumber] = useState("");
@@ -22,7 +25,7 @@ export default function AddSupplier() {
         setLoading(true)
         try {
             e.preventDefault();
-            if (!supname || !email|| !contactnumber || !nic || !category || !companyname || !companyaddress) {
+            if (!supid||!supname || !email|| !contactnumber || !nic || !category || !companyname || !companyaddress) {
                 SoloAlert.alert({
                     title: "Oops!",
                     body: "Please fill all fields",
@@ -35,7 +38,7 @@ export default function AddSupplier() {
                 });
             } else {
                 const newDetails = {
-                    supname, email, contactnumber, nic, category , companyname , companyaddress
+                   supid ,supname, email, contactnumber, nic, category , companyname , companyaddress
                 }
                 
     const data =  (await axios.post("http://localhost:5001/supplier/", newDetails)).status
@@ -67,6 +70,11 @@ export default function AddSupplier() {
             <h3>Add Supplier</h3><hr />
 
             <form class="row g-3 needs-validation" id="inputForm2" novalidate>
+            <div class="col-md-6 position-relative">
+                    <label for="validationTooltip01" class="form-label">Sup ID</label>
+                    <input type="text" class="form-control" id="validationTooltip01" required
+                        onChange={(e) => { setSupid(e.target.value) }} />
+                </div>
                 <div class="col-md-6 position-relative">
                     <label for="validationTooltip01" class="form-label">Name</label>
                     <input type="text" class="form-control" id="validationTooltip01" required
@@ -80,8 +88,14 @@ export default function AddSupplier() {
 
                 <div class="col-md-6 position-relative">
                     <label for="validationTooltip01" class="form-label">Contact Number</label>
-                    <input type="text" class="form-control" id="validationTooltip01" required
+                    {/*<input type="text" class="form-control" id="validationTooltip01" required
                         onChange={(e) => { setContactnumber(e.target.value) }} />
+                        */}
+
+                         <PhoneInput
+                placeholder="Enter phone number" type="textarea" class="form-control" id="validationTooltip03"
+                value={contactnumber}
+                onChange={setContactnumber}/>
                 </div>
 
                

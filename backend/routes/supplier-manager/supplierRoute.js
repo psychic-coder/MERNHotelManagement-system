@@ -32,10 +32,11 @@ router.get('/', async(req,res)=>{
 router.route("/:id").put(async(req,res)=>{
     let supplierID = req.params.id;  //get unique user id from data base
 
-    const {supname,email,contactnumber,nic,category,companyname,companyaddress} = req.body;  // get update details from frontend
+    const {supid,supname,email,contactnumber,nic,category,companyname,companyaddress} = req.body;  // get update details from frontend
     
 
     const updateSupplier = {
+        supid,
         supname,
         email,
         contactnumber,

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const supplierSchema = new mongoose.Schema({
+    supid : { type: String, required : true }, 
     supname : { type: String, required : true },
     email : { type: String, required : true },
     contactnumber : { type: String, required : true },
