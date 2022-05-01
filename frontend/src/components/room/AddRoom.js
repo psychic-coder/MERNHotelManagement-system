@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+/*import React, { useState, useEffect } from 'react';
 import SoloAlert from 'soloalert'
 import axios from 'axios';
 import validation from 'validator'
@@ -140,3 +140,4 @@ export default function AddRoom() {
         </div>
     )
 }
+*/
