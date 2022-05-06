@@ -13,7 +13,7 @@ export default function Supsidenav() {
 
                 <Link to="/supmanager/view">View Suppliers</Link>
                 <Link to="/supmanager/add">Add Supplier</Link>
-                <Link to="/supmanager/add">Supplier History</Link>
+                <Link to="/supManager/supplierhistory">Supplier History</Link>
             </div>
 
 

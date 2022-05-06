@@ -12,7 +12,7 @@ import Supsidenav from './components/layouts/Supsidenav'
 import AddSupplier from './components/supplier/AddSupplier'
 import ViewSuppliers from './components/supplier/ViewAllSuppliers'
 import ViewOneSupplier from './components/supplier/ViewOneSupplier'
-
+import ViewAllSupplierHistoryRecords from './components/supplier/ViewAllSupplierHistoryRecords'
 
 
 
@@ -35,6 +35,7 @@ function App() {
       <Route exact path = "/supmanager/add"><AddSupplier/></Route>
       <Route exact path = "/supmanager/view"><ViewSuppliers/></Route>
       <Route exact path = "/supManager/view/:id"><ViewOneSupplier/></Route>
+      <Route exact path = "/supManager/supplierhistory"><Supsidenav/><ViewAllSupplierHistoryRecords/></Route>
 
 
     </BrowserRouter>

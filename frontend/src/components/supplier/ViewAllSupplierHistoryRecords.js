@@ -8,7 +8,7 @@ import "jspdf-autotable"
 
 
 
-export default function ViewAllSuppliers() {
+export default function ViewAllSupplierHistoryRecords() {
 
     const [loaderStatus, setLoaderStatus] = useState(false);
     const [tebleStatus, setTableStatus] = useState(true);
@@ -17,7 +17,7 @@ export default function ViewAllSuppliers() {
     const [search, setsearch] = useState("");
     const [filtered, setfiltered] = useState([]);
 
-    const [AllSuppliers, setAllSuppliers] = useState([]);
+    const [AllSupplierHistoryRecords, setAllSupplierHistoryRecords] = useState([]);
 
 
 
@@ -28,7 +28,7 @@ export default function ViewAllSuppliers() {
         async function getDetails() {
             try {
                 const result = await (await axios.get("http://localhost:5001/supplier//")).data.data
-                setAllSuppliers(result);
+                setAllSupplierHistoryRecords(result);
                 setLoaderStatus(true)
                 setTableStatus(false)
             } catch (err) {
@@ -43,33 +43,30 @@ export default function ViewAllSuppliers() {
     //This useEffect method is used to perform a searching function
     useEffect(() => {
         setfiltered(
-            AllSuppliers.filter(items => {
-                return items.supname.toLowerCase().includes(search.toLowerCase())
-                    || items.email.toLowerCase().includes(search.toLowerCase())
-                    || items.contactnumber.toLowerCase().includes(search.toLowerCase())
+            AllSupplierHistoryRecords.filter(items => {
+                return items.supid.toLowerCase().includes(search.toLowerCase())
+                    || items.action.toLowerCase().includes(search.toLowerCase())
+                    
                     
             })
         )
 
-    }, [search, AllSuppliers])
+    }, [search, AllSupplierHistoryRecords])
 
 
     //This function used to generate a pdf
     function generatePDF(tickets) {
         const doc = new jspdf();
-        const tableColumn = ["Sup ID","Supplier Name", "Emails", "Contact Number", "Nic", "Category", "Company Name" ," CompanyAddress"];
+        const tableColumn = ["Sup ID","Action", "Date", "Amount"];
         const tableRows = [];
 
         tickets.slice(0).reverse().map(ticket =>{
             const ticketData = [
                 ticket.supid, 
-                ticket.supname,
-                ticket.email,
-                ticket.contactnumber,
-                ticket.nic,
-                ticket.companyaddress,
-                ticket.companyname,
-                ticket.companyaddress
+                ticket.action,
+                ticket.date,
+                ticket.amount,
+                
             ];
             tableRows.push(ticketData);
         });
@@ -77,9 +74,9 @@ export default function ViewAllSuppliers() {
         doc.autoTable(tableColumn, tableRows, { styles: { fontSize: 8 }, startY: 35 });
         const date = Date().split(" ");
         const dateStr = date[1] + "-" + date[2] + "-" + date[3];
-        doc.text("Added-supplier-Report", 14, 15).setFontSize(12);
+        doc.text("Supplier-History-Report", 14, 15).setFontSize(12);
         doc.text(`Report Generated Date - ${dateStr} `, 14, 23);
-        doc.save(`Supplier-Details-Report_${dateStr}.pdf`);
+        doc.save(`Supplier-History-Report_${dateStr}.pdf`);
 
     }
 
@@ -96,8 +93,8 @@ export default function ViewAllSuppliers() {
             <div hidden={tebleStatus}>{/* This part used to get all users data into table */}
                 <nav className="navbar bg-white" >
                     <div className="container-fluid">
-                        <h3>Suppliers</h3>
-                        <button type="button" class="btn btn-outline-danger" id="pdfButton" onClick={(e) => { generatePDF(AllSuppliers) }}><i className="fa fa-file-pdf"></i>  PDF</button>
+                        <h3>Supplier History Records</h3>
+                        <button type="button" class="btn btn-outline-danger" id="pdfButton" onClick={(e) => { generatePDF(AllSupplierHistoryRecords) }}><i className="fa fa-file-pdf"></i>  PDF</button>
                         <form className="d-flex">
                             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"
                                 onChange={e => { setsearch(e.target.value) }} />
@@ -110,31 +107,48 @@ export default function ViewAllSuppliers() {
                         <thead>
                             <tr> 
                                 <th scope="col">Sup ID</th>
-                                <th scope="col">Supplier Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Contact Number</th>
-                                <th scope="col">Nic</th>
-                                <th scope="col">Category</th>
-                                <th scope="col">Company Name</th>
-                                <th scope="col">Company Address</th><th></th>
+                                <th scope="col">Action</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Amount</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
+                        <tr>
+                            <td>S001</td>
+                            <td>created</td>
+                            <td>2022.04.12</td>
+                            <td>20000.00</td>
+                        </tr>
+                        <tr>
+                            <td>S002</td>
+                            <td>perchase order</td>
+                            <td>2021.12.12</td>
+                            <td>30000.00</td>
+                        </tr>
+                        <tr>
+                            <td>S003</td>
+                            <td>purchase order payment</td>
+                            <td>2022.01.30</td>
+                            <td>10000.00</td>
+                        </tr>
+                        <tr>
+                            <td>S004</td>
+                            <td>created</td>
+                            <td>2022.02.20</td>
+                            <td>40000.00</td>
+                        </tr>
+                        <tr>
+                            <td>S005</td>
+                            <td>purchase order receive</td>
+                            <td>2022.04.12</td>
+                            <td>11000.00</td>
+                        </tr>
 
-                            {filtered.slice(0).reverse().map((Supplier) => {
-                                return <tr>
-                                    <td>{Supplier.supid}</td>
-                                    <td>{Supplier.supname}</td>
-                                    <td>{Supplier.email}</td>
-                                    <td>{Supplier.contactnumber} </td>
-                                    <td>{Supplier.nic}</td>
-                                    <td>{Supplier.category} </td>
-                                    <td>{Supplier.companyname}</td>
-                                    <td>{Supplier.companyaddress}</td>
-                                    <td><Link to={"/supManager/view/" + Supplier._id} className="Edit"> <i className="far fa-edit"></i> </Link></td>
-                                </tr>
+                       
 
-                            })}
+                        
+
                         </tbody>
                     </table>
 
