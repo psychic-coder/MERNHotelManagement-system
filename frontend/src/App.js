@@ -28,6 +28,7 @@ function App() {
 
       {/* Room Booking Routes */}
       <Route exact path = "/home"><Home/></Route>
+      <Route exact path = "/rooms"><Rooms/></Route>
 
       <Route component={Error} />
 
