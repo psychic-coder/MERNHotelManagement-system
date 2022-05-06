@@ -185,33 +185,34 @@ export default function ViewOneInventory() {
             <div hidden={tebleStatus}>
                 <h3>Edit/Delete Inventory</h3><hr />
                 <form class="row g-3 needs-validation" id="inputForm2" novalidate>
-                <div class="col-md-6 position-relative">
+                <div class="col-md-5 position-relative">
                     <label for="validationTooltip01" class="form-label">Item ID</label>
                     <input type="text" class="form-control" id="validationTooltip01" required defaultValue={itemid}
                         onChange={(e) => { setitemid(e.target.value) }} disabled={textState}/>
                 </div>
 
-                <div class="col-md-6 position-relative">
+                <div class="col-md-5 position-relative">
                     <label for="validationTooltip02" class="form-label">Item Name</label>
                     <input type="text" class="form-control" id="validationTooltip02" required defaultValue={itemname}
                         onChange={(e) => { setitemname(e.target.value) }} disabled={textState}/>
                 </div><br />
                
-                <div class="col-md-6 position-relative">
+                <div class="col-md-5 position-relative">
                     <label for="validationTooltip04" class="form-label">Category</label>
                     <select class="form-select" id="validationTooltip04" required disabled={textState} onChange={(e) => { setitemcategory(e.target.value) }}>
                         <option selected disabled>{itemmodel}</option>
-                        <option>Category 1</option>
-                        <option>Category 2</option>
+                        <option>Kitchen</option>
+                        <option>Furniture</option>
+                        <option>Utilities</option>
                     </select>
                 </div>
                    
-                <div class="col-md-6 position-relative">
+                <div class="col-md-5 position-relative">
                     <label for="validationTooltip03" class="form-label">Item Model</label>
                     <input type="text" class="form-control" id="validationTooltip03" required
                         onChange={(e) => { setitemmodel(e.target.value) }} defaultValue={itemcategory} disabled={textState}/>
                 </div>
-                <div class="col-md-6 position-relative">
+                <div class="col-md-5 position-relative">
                     <label for="validationTooltip03" class="form-label">Restock Level</label>
                     <input type="number" class="form-control" id="validationTooltip03" disabled={textState} required defaultValue={restocklevel}
                         onChange={(e) => { setrestocklevel(e.target.value) }} />

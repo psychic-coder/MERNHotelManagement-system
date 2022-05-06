@@ -86,8 +86,9 @@ export default function AddInventory() {
                     <label for="validationTooltip04" class="form-label">Category</label>
                     <select class="form-select" id="validationTooltip04" required onChange={(e) => { setitemcategory(e.target.value) }}>
                         <option selected disabled value="">Choose...</option>
-                        <option>Category 1</option>
-                        <option>Category 2</option>
+                        <option>Kitchen</option>
+                        <option>Furniture</option>
+                        <option>Utilities</option>
                     </select>
     </div>
                

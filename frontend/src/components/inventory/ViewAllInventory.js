@@ -36,7 +36,7 @@ export default function ViewAllInventory() {
         }
 
         getDetails();
-    })
+    },[])
 
 
     //This useEffect method is used to perform a searching function
@@ -46,6 +46,7 @@ export default function ViewAllInventory() {
                 return items.itemid.toLowerCase().includes(search.toLowerCase())
                     || items.itemname.toLowerCase().includes(search.toLowerCase())
                     || items.itemmodel.toLowerCase().includes(search.toLowerCase())
+                    || items.itemcategory.toLowerCase().includes(search.toLowerCase())
             })
         )
 
@@ -96,16 +97,16 @@ export default function ViewAllInventory() {
                 <nav className="navbar bg-white" >
                     <div className="container-fluid">
                         <h3>Inventory</h3>
-                        <button type="button" class="btn btn-outline-danger" id="pdfButton" onClick={(e) => { generatePDF(AllInventory) }}><i className="fa fa-file-pdf"></i>  PDF</button>
                         <form className="d-flex">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                            <input className="form-control me-1" type="search" placeholder="Search" aria-label="Search"
                                 onChange={e => { setsearch(e.target.value) }} />
                         </form>
+                        <button type="button" class="btn btn-outline-danger" id="pdfButton" onClick={(e) => { generatePDF(AllInventory) }}><i className="fa fa-file-pdf"></i>  PDF</button>
                     </div>
                 </nav><hr />
 
                 <div className="bodyContent">
-                    <table className="table table-dark table-hover">
+                    <table className="table table-striped">
                         <thead>
                             <tr>
                                 <th scope="col">Item ID</th>
