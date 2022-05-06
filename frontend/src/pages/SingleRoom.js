@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import defaultBcg from "../images/room-1.jpeg";
-//import Hero from "../components/Hero";
 import Banner from "../components/Banner";
 import { Link } from "react-router-dom";
 import { RoomContext } from "../context";
@@ -17,9 +16,7 @@ export default class SingleRoom extends Component {
   }
   static contextType = RoomContext;
 
-  // componentDidMount() {
-  //   console.log(this.props);
-  // }
+
   render() {
     const { getRoom } = this.context;
     const room = getRoom(this.state.slug);
@@ -70,7 +67,7 @@ export default class SingleRoom extends Component {
             </article>
             <article className="info">
               <h3>info</h3>
-              <h6>price : ${price}</h6>
+              <h6>price : Rs.{price}</h6>
               <h6>size : {size} SQFT</h6>
               <h6>
                 max capacity :
@@ -88,6 +85,14 @@ export default class SingleRoom extends Component {
               <li key={index}>- {item}</li>
             ))}
           </ul>
+
+          <div className="p-4 clearfix">
+            <div className="row">
+              <div className="col-md-3 col-12 ml-auto">
+                <Link to={`#`} className="btn btn-outline-primary btn-block btn-lg float-right ">Book Room</Link>
+              </div>
+            </div>
+          </div>
         </section>
       </>
     );
