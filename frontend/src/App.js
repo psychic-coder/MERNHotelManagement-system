@@ -1,3 +1,6 @@
+import React from "react";
+import "./App.css";
+
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Topnav from './components/layouts/topnav'
 import EMPSideNav from './components/layouts/EMPsidenav'
@@ -15,6 +18,11 @@ import RestockInventory from "./components/inventory/RestockInventory";
 import CusLogin from "./components/auth/cusLogin";
 import CusReg from "./components/auth/CusRegister";
 
+import Home from "./pages/Home";
+import Rooms from "./pages/Rooms";
+import SingleRoom from "./pages/SingleRoom";
+import Error from "./pages/Error";
+
 
 
 
@@ -28,6 +36,14 @@ function App() {
       {/* User Login and Reg*/}
       <Route path = "/cuslogin"><CusLogin/></Route>
       <Route path = "/cusreg"><CusReg/></Route>
+      {/* Room Booking Routes */}
+      <Route exact path = "/home"><Home/></Route>
+      <Route exact path = "/rooms"><Rooms/></Route>
+      <Route exact path="/rooms/:slug" component={SingleRoom} />
+
+      
+
+      
 
       {/* Room Management Routes */}
       <Route path = "/roommanager"><RMsidenav/></Route>
