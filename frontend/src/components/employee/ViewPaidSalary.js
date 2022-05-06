@@ -7,7 +7,7 @@ import jspdf from 'jspdf'
 import "jspdf-autotable"
 import '../Home.css'
 
-export default function ViewAllEmp() {
+export default function ViewAllPaidSalaries() {
 
     const [loaderStatus, setLoaderStatus] = useState(false);
     const [tebleStatus, setTableStatus] = useState(true);
@@ -16,11 +16,7 @@ export default function ViewAllEmp() {
     const [search, setsearch] = useState("");
     const [filtered, setfiltered] = useState([]);
 
-    const [AllEmp, setAllEmp] = useState([]);
-
-    //const [active, setActive] = useState(types[0]);
-    //const types = ["Cash", "Credit Card", "Bitcoin"];
-
+    const [AllPaidSalaries, setAllPaidSalaries] = useState([]);
 
 
 
@@ -29,10 +25,11 @@ export default function ViewAllEmp() {
     useEffect(() => {
         async function getDetails() {
             try {
-                const result = await (await axios.get("http://localhost:5000/employees//")).data.data
-                setAllEmp(result);
+                const result = await (await axios.get("http://localhost:5000/paidsalaries")).data
+                setAllPaidSalaries(result);
                 setLoaderStatus(true)
                 setTableStatus(false)
+                console.log(result)
             } catch (err) {
                 console.log(err.message)
             }
@@ -45,16 +42,17 @@ export default function ViewAllEmp() {
     //This useEffect method is used to perform a searching function
     
     
-    useEffect(() => {
-        setfiltered(
-            AllEmp.filter(items => {
-                return items.empid.toLowerCase().includes(search.toLowerCase())
-                    || items.firstname.toLowerCase().includes(search.toLowerCase())
-                    || items.lastname.toLowerCase().includes(search.toLowerCase())
-            })
-        )
+   useEffect(() => {
+         setfiltered(
+             AllPaidSalaries.filter(items => {
+                 return items.paymentid.toLowerCase().includes(search.toLowerCase())
+                     || items.emplid.toLowerCase().includes(search.toLowerCase())
+                     
+             })
+         )
 
-    }, [search, AllEmp])
+     }, [search, AllPaidSalaries])
+    
     
     
 
@@ -62,19 +60,19 @@ export default function ViewAllEmp() {
     //This function used to generate a pdf
     function generatePDF(tickets) {
         const doc = new jspdf();
-        const tableColumn = ["Emp ID", "First Name", "Last Name", "Emp Type", "NIC", "Mobile No","Bank","Branch"];
+        const tableColumn = ["Payment ID", "Emp ID", "Email", "Account No", "Basic Salary", "Total Salary","Paid Date"];
         const tableRows = [];
 
         tickets.slice(0).reverse().map(ticket => {
             const ticketData = [
-                ticket.empid,
-                ticket.firstname,
-                ticket.lastname,
-                ticket.emptype,
-                ticket.nic,
-                ticket.mobile,
-                ticket.bank,
-                ticket.branch
+                ticket.paymentid,
+                ticket.emplid,
+                ticket.email,
+                ticket.accountnumber,
+                ticket.basicsalary,
+                ticket.totalsalary,
+                ticket.paiddate,
+               
             ];
             tableRows.push(ticketData);
         });
@@ -82,9 +80,9 @@ export default function ViewAllEmp() {
         doc.autoTable(tableColumn, tableRows, { styles: { fontSize: 8 }, startY: 35 });
         const date = Date().split(" ");
         const dateStr = date[1] + "-" + date[2] + "-" + date[3];
-        doc.text("Added-Employee-Report", 14, 15).setFontSize(12);
+        doc.text("Added-PaidSalaryDetais-Report", 14, 15).setFontSize(12);
         doc.text(`Report Generated Date - ${dateStr} `, 14, 23);
-        doc.save(`Employee-Details-Report_${dateStr}.pdf`);
+        doc.save(`PaidSalary-Details-Report_${dateStr}.pdf`);
 
     }
 
@@ -101,12 +99,12 @@ export default function ViewAllEmp() {
             <div hidden={tebleStatus}>{/* This part used to get all users data into table */}
                 <nav className="navbar bg-white" >
                     <div className="container-fluid">
-                        <h3>Employee Management</h3>
+                        <h3>Salary Management</h3>
                         <form className="d-flex">
                             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"
                                 onChange={e => { setsearch(e.target.value) }} />
                         </form>
-                        <button type="button" class="btn btn-outline-danger" id="pdfButton" onClick={(e) => { generatePDF(AllEmp) }}><i className="fa fa-file-pdf"></i>  PDF</button>
+                        <button type="button" class="btn btn-outline-danger" id="pdfButton" onClick={(e) => { generatePDF(AllPaidSalaries) }}><i className="fa fa-file-pdf"></i>  PDF</button>
                     </div>
                 </nav>
      
@@ -117,31 +115,30 @@ export default function ViewAllEmp() {
                     <table className="table table-dark table-striped">
                         <thead>
                             <tr>
+                                <th scope="col">Payment ID</th>
                                 <th scope="col">Emp ID</th>
-                                <th scope="col">First Name</th>
-                                <th scope="col">Last Name</th>
-                                <th scope="col">Emp Type</th>
-                                <th scope="col">NIC</th>
-                                <th scope="col">Mobile</th>
-                                <th scope="col">Bank</th>
-                                <th scope="col">Branch</th>
-                                <th></th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Account No</th>
+                                <th scope="col">Basic Salary</th>
+                                <th scope="col">Total Salary</th>
+                                <th scope="col">Paid Date</th>
                                 
+                                <th></th>  
                             </tr>
                         </thead>
                         <tbody>
 
-                            {filtered.slice(0).reverse().map((Emp) => {
+                            {filtered.slice(0).reverse().map((Paidsal) => {
                                 return <tr>
-                                    <td>{Emp.empid}</td>
-                                    <td>{Emp.firstname}</td>
-                                    <td>{Emp.lastname} </td>
-                                    <td>{Emp.emptype}</td>
-                                    <td>{Emp.nic} </td>
-                                    <td>{Emp.mobile}</td>
-                                    <td>{Emp.bank}</td>
-                                    <td>{Emp.branch}</td>
-                                    <td><Link to={"/empManager/view/" + Emp._id} className="Edit"> <i className="far fa-edit"></i> </Link></td>
+                                    <td>{Paidsal.paymentid}</td>
+                                    <td>{Paidsal.emplid}</td>
+                                    <td>{Paidsal.email} </td>
+                                    <td>{Paidsal.accountnumber}</td>
+                                    <td>{Paidsal.basicsalary}</td>
+                                    <td>{Paidsal.totalsalary} </td>
+                                    <td>{Paidsal.paiddate}</td>
+                           
+                                    <td><Link to={"/paidsalManager/view/" + Paidsal._id} className="Edit"> <i className="far fa-edit"></i> </Link></td>
                                 </tr>
 
                             })}

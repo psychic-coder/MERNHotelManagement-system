@@ -15,7 +15,8 @@ import ViewEmployee from './components/employee/ViewEmployee'
 import AddEmployee from './components/employee/AddEmployee'
 import ViewOneEmployee from './components/employee/ViewOneEmployee'
 
-
+import ViewPaidSalary from './components/employee/ViewPaidSalary'
+import AddPaidSalary from './components/employee/AddPaidSalary'
 
 
 function App() {
@@ -37,7 +38,11 @@ function App() {
       <Route path = "/empManager"><EmpDetailsSideNav/></Route>
       <Route exact path = "/empManager/add"><AddEmployee/></Route>
       <Route exact path = "/empManager/view"><ViewEmployee/></Route>
-      {<Route exact path = "/empManager/view/:id"><ViewOneEmployee/></Route>}
+      <Route exact path = "/empManager/view/:id"><ViewOneEmployee/></Route>
+      
+      <Route exact path = "/paidsalManager/view"><EmpDetailsSideNav/><ViewPaidSalary/></Route>
+      <Route exact path = "/paidsalManager/add"><EmpDetailsSideNav/><AddPaidSalary/></Route>
+      
 
     </BrowserRouter>
   );

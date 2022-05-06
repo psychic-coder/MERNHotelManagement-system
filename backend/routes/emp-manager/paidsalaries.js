@@ -8,6 +8,7 @@ router.route("/add").post((req,res)=>{
     const emplid = req.body.emplid;
     const email = req.body.email;
     const accountnumber = req.body.accountnumber;
+    const basicsalary = req.body.basicsalary;
     const totalsalary = req.body.totalsalary;
     const paiddate = Date(req.body.paiddate);
     
@@ -17,6 +18,7 @@ router.route("/add").post((req,res)=>{
         emplid,
         email,
         accountnumber,
+        basicsalary,
         totalsalary,
         paiddate,
         
@@ -32,7 +34,7 @@ router.route("/add").post((req,res)=>{
 })
 
 //retrive data in paid sal db
-router.route("/retrieve").get((req,res)=>{
+router.route("/").get((req,res)=>{
 
     Paidsalaries.find().then((paidsalaries)=>{
         res.json(paidsalaries)
@@ -44,13 +46,14 @@ router.route("/retrieve").get((req,res)=>{
 //update paid sal details
 router.route("/update/:id").put(async(req,res)=>{
     let Payment_id = req.params.id;
-    const { paymentid,emplid,email,accountnumber,totalsalary,paiddate,} = req.body;
+    const { paymentid,emplid,email,accountnumber,basicsalary,totalsalary,paiddate,} = req.body;
 
     const updatePaidsalary = {
         paymentid,
         emplid,
         email,
         accountnumber,
+        basicsalary,
         totalsalary,
         paiddate,
     }

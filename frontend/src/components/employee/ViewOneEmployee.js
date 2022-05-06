@@ -3,6 +3,8 @@ import SoloAlert from 'soloalert'
 import { useParams } from "react-router";
 import axios from 'axios';
 
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 export default function ViewOneEmployee() {
 
@@ -183,7 +185,7 @@ export default function ViewOneEmployee() {
 
 
             <div hidden={tebleStatus}>
-                <h3>Edit/Delete Employee</h3><hr />
+                <h3>Edit Employee</h3><hr />
                 <form class="row g-3 needs-validation" id="inputForm2" novalidate>
                 <div class="col-md-6 position-relative">
                     <label for="validationTooltip01" class="form-label">Emp ID</label>
@@ -228,16 +230,14 @@ export default function ViewOneEmployee() {
                
                 <div class="col-md-6 position-relative">
                     <label for="validationTooltip03" class="form-label">Mobile No</label>
-                    <input type="textarea" class="form-control" id="validationTooltip03" required defaultValue={mobile}
-                        onChange={(e) => { setmobile(e.target.value) }} disabled={textState}/>
+                    {/*<input type="textarea" class="form-control" id="validationTooltip03" required defaultValue={mobile}
+                        onChange={(e) => { setmobile(e.target.value) }} disabled={textState}/>*/}
 
 
-                    {/*
-                    <PhoneInput  id="validationTooltip03"
-                    placeholder="Enter phone number"
-                    value={value}
-                    onChange={(e) => { setValue(e.target.value)}}/>
-                    */}
+                <PhoneInput
+                placeholder="Enter phone number" type="textarea" class="form-control" id="validationTooltip03"
+                value={mobile}
+                onChange={setmobile}/>
 
                 </div>
 

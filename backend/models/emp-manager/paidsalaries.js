@@ -23,6 +23,10 @@ const paidsalarySchema = new Schema({
         required: true
     },
 
+    basicsalary: {
+        type: String,
+        required: true
+    },
     totalsalary: {
         type: Number,
         required: true

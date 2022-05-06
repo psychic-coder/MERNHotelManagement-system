@@ -9,7 +9,7 @@ export default function topnav() {
     return (
         <div>
             <div id="navbar">
-                <a href="#default" id="logo">EMPLOYEE MANEGMENT SYSTE</a>
+                <a href="#default" id="logo">EMPLOYEE MANEGMENT SYSTEM</a>
                 <div id="navbar-right">
                     <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
                     <a href="#"><i class="fa fa-eject"></i> About</a>

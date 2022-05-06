@@ -20,9 +20,11 @@ export default function AddEmployee() {
     const [bank, setbank] = useState("");
     const [branch, setbranch] = useState("");
 
-   // const [value, setValue] = useState()
+    //const [value, setValue] = useState()
 
     async function submitData(e) {
+        
+
         setLoading(true)
         try {
             e.preventDefault();
@@ -114,16 +116,15 @@ export default function AddEmployee() {
                
                 <div class="col-md-6 position-relative">
                     <label for="validationTooltip03" class="form-label">Mobile No</label>
-                    {<input type="textarea" class="form-control" id="validationTooltip03" required
+                   {/* {<input type="textarea" class="form-control" id="validationTooltip03" required
                         onChange={(e) => { setmobile(e.target.value) }} />}
+                        */}
 
 
-                    {/*
-                    <PhoneInput  id="validationTooltip03"
-                    placeholder="Enter phone number"
-                    value={value}
-                    onChange={(e) => { setValue(e.target.value)}}/>
-                    */}
+             <PhoneInput
+                placeholder="Enter phone number" type="textarea" class="form-control" id="validationTooltip03"
+                value={mobile}
+                onChange={setmobile}/>
 
                 </div>
 
@@ -162,7 +163,11 @@ export default function AddEmployee() {
                     </select>
                 </div>
 
-                
+                <div class="col-12" style={{ marginTop: "50px", marginLeft: "65%" }}>
+                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal" onClick={(e) => { clear(e) }}><i class="fa fa-ban"></i> Clear form</button>&nbsp;&nbsp;&nbsp;
+                    <button type="submit" class="btn btn-primary" onClick={(e) => { submitData(e) }}
+                        disabled={isLoading} ><i class="fa fa-file-export"></i>  {isLoading ? 'Sending..' : 'Submit form'}</button>
+                </div>
                 
 
 
