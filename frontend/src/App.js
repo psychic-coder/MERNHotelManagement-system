@@ -13,6 +13,7 @@ import ViewAllInventory from "./components/inventory/ViewAllInventory";
 import ViewOneInventory from "./components/inventory/ViewOneInventory";
 import RestockInventory from "./components/inventory/RestockInventory";
 import CusLogin from "./components/auth/cusLogin";
+import CusReg from "./components/auth/CusRegister";
 
 
 
@@ -24,9 +25,9 @@ function App() {
 
       <Route path = "/"><CusNavigation/></Route>
 
-      {/* User Login*/}
+      {/* User Login and Reg*/}
       <Route path = "/cuslogin"><CusLogin/></Route>
-      
+      <Route path = "/cusreg"><CusReg/></Route>
 
       {/* Room Management Routes */}
       <Route path = "/roommanager"><RMsidenav/></Route>
