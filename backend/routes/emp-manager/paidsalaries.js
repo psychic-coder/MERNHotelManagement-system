@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Paidsalaries = require("../../models/emp-manager/paidsalaries");
 
 //add new paidsalarie for the system
-router.route("/add").post((req,res)=>{
+router.post('/',async(req,res)=>{
 
     const paymentid = req.body.paymentid;
     const emplid = req.body.emplid;
@@ -43,7 +43,8 @@ router.route("/").get((req,res)=>{
     })
 }) 
 
-//update paid sal details
+{/*
+    //update paid sal details
 router.route("/update/:id").put(async(req,res)=>{
     let Payment_id = req.params.id;
     const { paymentid,emplid,email,accountnumber,basicsalary,totalsalary,paiddate,} = req.body;
@@ -88,5 +89,5 @@ router.route("/get/:id").get(async(req,res)=>{
         console.log(err.message);
         res.status(500).send({status: "Error with get paid sal details", error: err.message});
     })
-})
+})*/}
 module.exports = router;

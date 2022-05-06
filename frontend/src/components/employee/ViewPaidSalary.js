@@ -99,7 +99,7 @@ export default function ViewAllPaidSalaries() {
             <div hidden={tebleStatus}>{/* This part used to get all users data into table */}
                 <nav className="navbar bg-white" >
                     <div className="container-fluid">
-                        <h3>Salary Management</h3>
+                        <h3>Paid Salary Management</h3>
                         <form className="d-flex">
                             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"
                                 onChange={e => { setsearch(e.target.value) }} />
