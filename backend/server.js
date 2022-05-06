@@ -41,6 +41,10 @@ app.use("/room", require("./routes/employee-manager/RoomRoute"));
 
 
 
+//Inventory Manager Routes
+app.use("/inventory", require("./routes/inventory-manager/InventoryRoute"));
+
+
 
 
 
