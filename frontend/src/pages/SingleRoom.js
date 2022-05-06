@@ -1,4 +1,4 @@
-/*import React, { Component } from "react";
+import React, { Component } from "react";
 import defaultBcg from "../images/room-1.jpeg";
 //import Hero from "../components/Hero";
 import Banner from "../components/Banner";
@@ -93,4 +93,3 @@ export default class SingleRoom extends Component {
     );
   }
 }
-*/

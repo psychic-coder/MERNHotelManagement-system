@@ -29,8 +29,9 @@ function App() {
       {/* Room Booking Routes */}
       <Route exact path = "/home"><Home/></Route>
       <Route exact path = "/rooms"><Rooms/></Route>
+      <Route exact path="/rooms/:slug" component={SingleRoom} />
 
-      <Route component={Error} />
+      
 
       
 
