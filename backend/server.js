@@ -42,6 +42,9 @@ app.use("/room", require("./routes/employee-manager/RoomRoute"));
 //Supplier management routes
 app.use("/supplier", require("./routes/supplier-manager/SupplierRoute"));
 
+//Supplier history routes
+app.use("/supplierhistory", require("./routes/supplier-manager/supplierhistoryRoute"));
+
 
 
 

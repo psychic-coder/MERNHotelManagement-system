@@ -17,7 +17,7 @@ export default function ViewAllSupplierHistoryRecords() {
     const [search, setsearch] = useState("");
     const [filtered, setfiltered] = useState([]);
 
-    const [AllSupplierHistoryRecords, setAllSupplierHistoryRecords] = useState([]);
+    const [AllSuppliers, setAllSuppliers] = useState([]);
 
 
 
@@ -27,8 +27,8 @@ export default function ViewAllSupplierHistoryRecords() {
     useEffect(() => {
         async function getDetails() {
             try {
-                const result = await (await axios.get("http://localhost:5001/supplier//")).data.data
-                setAllSupplierHistoryRecords(result);
+                const result = await (await axios.get("http://localhost:5001/supplierhistory//")).data.data
+                setAllSuppliers(result);
                 setLoaderStatus(true)
                 setTableStatus(false)
             } catch (err) {
@@ -43,15 +43,15 @@ export default function ViewAllSupplierHistoryRecords() {
     //This useEffect method is used to perform a searching function
     useEffect(() => {
         setfiltered(
-            AllSupplierHistoryRecords.filter(items => {
+            AllSuppliers.filter(items => {
                 return items.supid.toLowerCase().includes(search.toLowerCase())
                     || items.action.toLowerCase().includes(search.toLowerCase())
-                    
+                    || items.amount.toLowerCase().includes(search.toLowerCase())
                     
             })
         )
 
-    }, [search, AllSupplierHistoryRecords])
+    }, [search, AllSuppliers])
 
 
     //This function used to generate a pdf
@@ -65,8 +65,8 @@ export default function ViewAllSupplierHistoryRecords() {
                 ticket.supid, 
                 ticket.action,
                 ticket.date,
-                ticket.amount,
-                
+                ticket.amount
+               
             ];
             tableRows.push(ticketData);
         });
@@ -74,9 +74,9 @@ export default function ViewAllSupplierHistoryRecords() {
         doc.autoTable(tableColumn, tableRows, { styles: { fontSize: 8 }, startY: 35 });
         const date = Date().split(" ");
         const dateStr = date[1] + "-" + date[2] + "-" + date[3];
-        doc.text("Supplier-History-Report", 14, 15).setFontSize(12);
+        doc.text("Added-supplier-History-Report", 14, 15).setFontSize(12);
         doc.text(`Report Generated Date - ${dateStr} `, 14, 23);
-        doc.save(`Supplier-History-Report_${dateStr}.pdf`);
+        doc.save(`Supplier-History-Details-Report_${dateStr}.pdf`);
 
     }
 
@@ -93,8 +93,8 @@ export default function ViewAllSupplierHistoryRecords() {
             <div hidden={tebleStatus}>{/* This part used to get all users data into table */}
                 <nav className="navbar bg-white" >
                     <div className="container-fluid">
-                        <h3>Supplier History Records</h3>
-                        <button type="button" class="btn btn-outline-danger" id="pdfButton" onClick={(e) => { generatePDF(AllSupplierHistoryRecords) }}><i className="fa fa-file-pdf"></i>  PDF</button>
+                        <h3>Suppliers</h3>
+                        <button type="button" class="btn btn-outline-danger" id="pdfButton" onClick={(e) => { generatePDF(AllSuppliers) }}><i className="fa fa-file-pdf"></i>  PDF</button>
                         <form className="d-flex">
                             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"
                                 onChange={e => { setsearch(e.target.value) }} />
@@ -114,41 +114,17 @@ export default function ViewAllSupplierHistoryRecords() {
                             </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>S001</td>
-                            <td>created</td>
-                            <td>2022.04.12</td>
-                            <td>20000.00</td>
-                        </tr>
-                        <tr>
-                            <td>S002</td>
-                            <td>perchase order</td>
-                            <td>2021.12.12</td>
-                            <td>30000.00</td>
-                        </tr>
-                        <tr>
-                            <td>S003</td>
-                            <td>purchase order payment</td>
-                            <td>2022.01.30</td>
-                            <td>10000.00</td>
-                        </tr>
-                        <tr>
-                            <td>S004</td>
-                            <td>created</td>
-                            <td>2022.02.20</td>
-                            <td>40000.00</td>
-                        </tr>
-                        <tr>
-                            <td>S005</td>
-                            <td>purchase order receive</td>
-                            <td>2022.04.12</td>
-                            <td>11000.00</td>
-                        </tr>
 
-                       
+                            {filtered.slice(0).reverse().map((Supplier) => {
+                                return <tr>
+                                    <td>{Supplier.supid}</td>
+                                    <td>{Supplier.action}</td>
+                                    <td>{Supplier.date}</td>
+                                    <td>{Supplier.amount} </td>
+                                    
+                                </tr>
 
-                        
-
+                            })}
                         </tbody>
                     </table>
 
