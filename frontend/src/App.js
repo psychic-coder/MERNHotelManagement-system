@@ -60,7 +60,7 @@ function App() {
       <Route exact path = "/inventorymanager/view/:id"><ViewOneInventory/></Route>
       <Route exact path = "/inventorymanager/restock"><RestockInventory/></Route>
 
-
+      {/* Dashboard */}
       <Route exact path = "/dashboard"><Dashboard/></Route>
       
     </BrowserRouter>
