@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 
+
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Topnav from './components/layouts/topnav'
 import EMPSideNav from './components/layouts/EMPsidenav'
@@ -22,7 +23,7 @@ import Home from "./pages/Home";
 import Rooms from "./pages/Rooms";
 import SingleRoom from "./pages/SingleRoom";
 import Error from "./pages/Error";
-
+import Dashboard from "./components/Dashboard";
 
 
 
@@ -59,6 +60,8 @@ function App() {
       <Route exact path = "/inventorymanager/view/:id"><ViewOneInventory/></Route>
       <Route exact path = "/inventorymanager/restock"><RestockInventory/></Route>
 
+
+      <Route exact path = "/dashboard"><Dashboard/></Route>
       
     </BrowserRouter>
   );

@@ -36,7 +36,7 @@ export default function ViewOneRoom() {
     useEffect(() => {
         async function getDetails() {
             try {
-                const result = await (await axios.get(`http://localhost:5000/room/${id}`)).data.data
+                const result = await (await axios.get(`http://localhost:5001/room/${id}`)).data.data
                 setRoomname(result[0].roomname);
                 setnoOfguests(result[0].noOfguests)
                 setRoomtype(result[0].roomtype);
@@ -66,7 +66,7 @@ export default function ViewOneRoom() {
             const newDetails = {
                 roomname, noOfguests, roomtype, facilities, rentperday, description, url1, url2, url3
             }
-            const data = await (await axios.put(`http://localhost:5000/room/${id}`, newDetails)).status
+            const data = await (await axios.put(`http://localhost:5001/room/${id}`, newDetails)).status
             if (data === 200) {
                 SoloAlert.alert({
                     title: "Welcome!",
@@ -124,7 +124,7 @@ export default function ViewOneRoom() {
             onOk: async function () {
 
                 try {
-                    const result = await (await axios.delete(`http://localhost:5000/room/${id}`)).status
+                    const result = await (await axios.delete(`http://localhost:5001/room/${id}`)).status
                     console.log(result)
 
                     if (result === 200) {
