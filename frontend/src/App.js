@@ -36,7 +36,7 @@ function App() {
       <Route exact path = "/supmanager/view"><ViewSuppliers/></Route>
       <Route exact path = "/supManager/view/:id"><ViewOneSupplier/></Route>
       <Route exact path = "/supManager/supplierhistory"><Supsidenav/><ViewAllSupplierHistoryRecords/></Route>
-
+      
 
     </BrowserRouter>
   );
