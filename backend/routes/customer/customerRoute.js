@@ -21,7 +21,8 @@ router.post('/',async(req,res)=>{
 router.post('/login',async(req,res)=>{
     try{
         console.log(req)
-        let customer =  Customer.find( { cusemail: req.cusemail})
+        const customer = await Customer.findOne({ email })
+        // let customer =  Customer.find( { cusemail: req.cusemail})
        res.status(200).send({msg : customer});
     }catch(err){
         res.status(500).send({status : err});
