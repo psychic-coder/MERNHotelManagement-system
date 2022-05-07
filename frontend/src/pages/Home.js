@@ -12,7 +12,7 @@ const home = () => {
           title="Hotel Elite"
           subtitle="cheaper rooms starting at Rs.1500.00"
         >
-          <Link to="/rooms" className="btn-home-primary">
+          <Link to="/cuslogin" className="btn-home-primary">
             our rooms
           </Link>
         </Banner>
