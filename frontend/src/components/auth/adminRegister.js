@@ -50,6 +50,7 @@ export default function AddReg() {
                 let role = 'admin'
                 const newDetails = {cusname, cusemail, phoneno, password,role}
                 
+                //db
                 const data =  (await axios.post("http://localhost:5000/customer/", newDetails)).status
                 if (data === 200) {
                     SoloAlert.alert({
@@ -100,7 +101,6 @@ export default function AddReg() {
                                     placeholder="Email" required
                                     onChange={(e) => { setcusemail(e.target.value) }} />
                             </div>
-
 
 
                             <div class="form-outline mb-3">
