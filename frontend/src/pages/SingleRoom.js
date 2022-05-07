@@ -89,7 +89,7 @@ export default class SingleRoom extends Component {
           <div className="p-4 clearfix">
             <div className="row">
               <div className="col-md-3 col-12 ml-auto">
-                <Link to={`#`} className="btn btn-outline-primary btn-block btn-lg float-right ">Book Room</Link>
+                <Link to={`/bookings`} className="btn btn-outline-primary btn-block btn-lg float-right ">Book Room</Link>
               </div>
             </div>
           </div>

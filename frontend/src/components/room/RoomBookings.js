@@ -112,13 +112,13 @@ export default function RoomBookings() {
 
                 <div class="col-md-6 position-relative">
                     <label for="validationTooltip03" class="form-label">From</label>
-                    <input type="text" class="form-control" id="validationTooltip03" required
+                    <input type="date" class="form-control" id="validationTooltip03" required
                         onChange={(e) => { setfrom(e.target.value) }} />
                 </div>
 
                 <div class="col-md-6 position-relative">
                     <label for="validationTooltip03" class="form-label">To</label>
-                    <input type="text" class="form-control" id="validationTooltip03" required
+                    <input type="date" class="form-control" id="validationTooltip03" required
                         onChange={(e) => { setto(e.target.value) }} />
                 </div>
                

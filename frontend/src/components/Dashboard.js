@@ -46,7 +46,7 @@ export default class Dashboard extends Component {
 </svg></i><br />
             <span id="manager-text">Supplier Manager</span>
         </Link>
-        <Link to="/bookings" className="ManagerLoginBox-h ManagerLoginBoxBTN">
+        <Link to="/viewbookings" className="ManagerLoginBox-h ManagerLoginBoxBTN">
                 <i className="fas"><svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor" class="bi bi-journal" viewBox="0 0 16 16">
   <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
   <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
