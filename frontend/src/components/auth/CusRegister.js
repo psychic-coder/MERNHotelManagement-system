@@ -47,8 +47,7 @@ export default function CusReg() {
                     },
                 });
             } else {
-                let role = 'admin'
-                const newDetails = {cusname, cusemail, phoneno, password,role}
+                const newDetails = {cusname, cusemail, phoneno, password}
                 
                 const data =  (await axios.post("http://localhost:5000/customer/", newDetails)).status
                 if (data === 200) {
