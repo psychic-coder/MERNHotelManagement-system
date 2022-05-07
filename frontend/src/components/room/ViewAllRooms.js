@@ -25,7 +25,7 @@ export default function ViewAllRooms() {
     useEffect(() => {
         async function getDetails() {
             try {
-                const result = await (await axios.get("http://localhost:5001/room/")).data.data
+                const result = await (await axios.get("http://localhost:5000/room/")).data.data
                 setAllRooms(result);
                 setLoaderStatus(true)
                 setTableStatus(false)

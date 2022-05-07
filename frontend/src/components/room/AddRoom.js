@@ -40,7 +40,7 @@ export default function AddRoom() {
                     roomname, noOfguests, roomtype, facilities, rentperday, description, url1, url2,url3
                 }
                 
-                const data =  (await axios.post("http://localhost:5001/room/", newDetails)).status
+                const data =  (await axios.post("http://localhost:5000/room/", newDetails)).status
                 if (data === 200) {
                     SoloAlert.alert({
                         title: "Welcome!",

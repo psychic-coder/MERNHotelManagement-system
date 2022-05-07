@@ -30,7 +30,7 @@ export default function ViewOneSupplierHistoryRecords() {
     useEffect(() => {
         async function getDetails() {
             try {
-                const result = await (await axios.get(`http://localhost:5001/supplier/${id}`)).data.data
+                const result = await (await axios.get(`http://localhost:5000/supplier/${id}`)).data.data
 
                 setsupid(result[0].supid); 
                 setaction(result[0].action);
