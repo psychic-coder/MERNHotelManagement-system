@@ -2,7 +2,7 @@
   "scripts": {
     "start": "node server",
     "server": "nodemon server",
-    "client": "npm run start --prefix frontend",
+    "client": "npm run starnpm run start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"cd ../frontend && npm start\""
   },
   "dependencies": {
@@ -18,5 +18,11 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
-  }
+  },
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

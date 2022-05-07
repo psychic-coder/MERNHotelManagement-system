@@ -19,6 +19,12 @@ import RestockInventory from "./components/inventory/RestockInventory";
 import CusLogin from "./components/auth/cusLogin";
 import CusReg from "./components/auth/CusRegister";
 
+import Supsidenav from './components/layouts/Supsidenav'
+import AddSupplier from './components/supplier/AddSupplier'
+import ViewSuppliers from './components/supplier/ViewAllSuppliers'
+import ViewOneSupplier from './components/supplier/ViewOneSupplier'
+import ViewAllSupplierHistoryRecords from './components/supplier/ViewAllSupplierHistoryRecords'
+
 import Home from "./pages/Home";
 import Rooms from "./pages/Rooms";
 import SingleRoom from "./pages/SingleRoom";
@@ -58,6 +64,14 @@ function App() {
       <Route exact path = "/roommanager/add"><AddRoom/></Route>
       <Route exact path = "/roommanager/view"><ViewRooms/></Route>
       <Route exact path = "/roomManager/view/:id"><ViewOneRoom/></Route>
+
+      {/* Supplier Management Routes */}
+      <Route path = "/supmanager"><Supsidenav/></Route>
+      <Route exact path = "/supmanager/add"><AddSupplier/></Route>
+      <Route exact path = "/supmanager/view"><ViewSuppliers/></Route>
+      <Route exact path = "/supManager/view/:id"><ViewOneSupplier/></Route>
+      <Route exact path = "/supManager/supplierhistory"><Supsidenav/><ViewAllSupplierHistoryRecords/></Route>
+      
 
 
       {/* Employee Management Routes */}
