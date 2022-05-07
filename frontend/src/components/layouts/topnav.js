@@ -1,25 +1,33 @@
-import axios from 'axios'
-import React from 'react'
-import "./TopNav.css"
+import React from 'react';
+import "./Navbar.css"
 
 
+export default function Navbar() {
 
-export default function topnav() {
 
     return (
-        <div>
-            <div id="navbar">
-                <a href="#default" id="logo">EMPLOYEE MANEGMENT SYSTEM</a>
-                <div id="navbar-right">
-                    <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
-                    <a href="#"><i class="fa fa-eject"></i> About</a>
-                    <a href="#"><i class="fa fa-fw fa-wrench"></i> Services</a>
-                    <a href="#"><i class="fa fa-fw fa-envelope"></i>Contact</a>
-                    <a href="#"><i class="fa fa-fw fa-user"></i>Feedback</a>
+        <div class="top-nav">
+        <nav class="navbar navbar-expand-lg ">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Hotel Elite.</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link"  href="/register">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Login</a>
+                        </li>
+                        
+                    </ul>
                 </div>
             </div>
-
+        </nav>
         </div>
     )
+
 }
 

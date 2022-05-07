@@ -3,8 +3,10 @@ import SoloAlert from 'soloalert'
 import { useParams } from "react-router";
 import axios from 'axios';
 
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
-export default function ViewOneRoom() {
+export default function ViewOneSupplier() {
 
     const [isLoading, setLoading] = useState(false);
 
@@ -17,39 +19,38 @@ export default function ViewOneRoom() {
     const [loaderStatus, setLoaderStatus] = useState(false);
     const [tebleStatus, setTableStatus] = useState(true);
 
-
-
-    const [roomname, setRoomname] = useState("");
-    const [noOfguests, setnoOfguests] = useState("");
-    const [roomtype, setRoomtype] = useState("");
-    const [facilities, setFacilities] = useState("");
-    const [rentperday, setrentperday] = useState("");
-    const [description, setDescription] = useState("");
-    const [url1, setUrl1] = useState("");
-    const [url2, setUrl2] = useState("");
-    const [url3, setUrl3] = useState("");
-
+    const [supid, setsupid] = useState(""); 
+    const [supname, setsupname] = useState("");
+    const [email, setemail] = useState("");
+    const [contactnumber, setcontactnumber] = useState("");
+    const [nic, setnic] = useState("");
+    const [category, setcategory] = useState("");
+    const [companyname, setcompanyname] = useState("");
+    const [companyaddress, setcompanyaddress] = useState("");
+    
+    
 
     const { id } = useParams();
 
-    //This useEffect function used to get room data
+    //This useEffect function used to get supplier data
     useEffect(() => {
         async function getDetails() {
             try {
-                const result = await (await axios.get(`http://localhost:5001/room/${id}`)).data.data
-                setRoomname(result[0].roomname);
-                setnoOfguests(result[0].noOfguests)
-                setRoomtype(result[0].roomtype);
-                setFacilities(result[0].facilities)
-                setrentperday(result[0].rentperday);
-                setDescription(result[0].description)
-                setUrl1(result[0].url1);
-                setUrl2(result[0].url2)
-                setUrl3(result[0].url3);
+                const result = await (await axios.get(`http://localhost:5000/supplier/${id}`)).data.data
+
+                setsupid(result[0].supid); 
+                setsupname(result[0].supname);
+                setemail(result[0].email)
+                setcontactnumber(result[0].contactnumber);
+                setnic(result[0].nic)
+                setcategory(result[0].category);
+                setcompanyname(result[0].companyname)
+                setcompanyaddress(result[0].companyaddress);
+
 
                 setLoaderStatus(true)
                 setTableStatus(false)
-                console.log(roomname, roomtype)
+                console.log(supname, email)
             } catch (err) {
                 console.log(err.message)
             }
@@ -64,9 +65,9 @@ export default function ViewOneRoom() {
         try {
             e.preventDefault();
             const newDetails = {
-                roomname, noOfguests, roomtype, facilities, rentperday, description, url1, url2, url3
+                supid,supname, email, contactnumber, nic, category, companyname, companyaddress
             }
-            const data = await (await axios.put(`http://localhost:5001/room/${id}`, newDetails)).status
+            const data = await (await axios.put(`http://localhost:5001/supplier/${id}`, newDetails)).status
             if (data === 200) {
                 SoloAlert.alert({
                     title: "Welcome!",
@@ -124,7 +125,7 @@ export default function ViewOneRoom() {
             onOk: async function () {
 
                 try {
-                    const result = await (await axios.delete(`http://localhost:5001/room/${id}`)).status
+                    const result = await (await axios.delete(`http://localhost:5001/supplier/${id}`)).status
                     console.log(result)
 
                     if (result === 200) {
@@ -135,7 +136,9 @@ export default function ViewOneRoom() {
                             theme: "dark",
                             useTransparency: true,
                             onOk: function () {
-                                window.location = "/roommanager/view"
+                                window.location = "#"
+                                window.location = "/supmanager/view"                                                                
+
                             },
 
                         });
@@ -183,62 +186,65 @@ export default function ViewOneRoom() {
 
 
             <div hidden={tebleStatus}>
-                <h3>Edit/Delete Room</h3><hr />
+                <h3><h3>Edit/Delete Suplier</h3><hr /></h3><hr />
                 <form class="row g-3 needs-validation" id="inputForm2" novalidate>
                 <div class="col-md-6 position-relative">
-                    <label for="validationTooltip01" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="validationTooltip01" required defaultValue={roomname}
-                        onChange={(e) => { setRoomname(e.target.value) }} disabled={textState}/>
+                    <label for="validationTooltip01" class="form-label">Sup ID</label>
+                    <input type="text" class="form-control" id="validationTooltip01" required defaultValue={supid}
+                        onChange={(e) => { setsupid(e.target.value) }} disabled={textState}/>
                 </div>
 
                 <div class="col-md-6 position-relative">
-                    <label for="validationTooltip02" class="form-label">No of Guests</label>
-                    <input type="number" class="form-control" id="validationTooltip02" required defaultValue={noOfguests}
-                        onChange={(e) => { setnoOfguests(e.target.value) }} disabled={textState}/>
+                    <label for="validationTooltip01" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="validationTooltip01" required defaultValue={supname}
+                        onChange={(e) => { setsupname(e.target.value) }} disabled={textState}/>
+                </div>
+
+                <div class="col-md-6 position-relative">
+                    <label for="validationTooltip02" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="validationTooltip02" required defaultValue={email}
+                        onChange={(e) => { setemail(e.target.value) }} disabled={textState}/>
                 </div><br />
                
                 <div class="col-md-6 position-relative">
-                    <label for="validationTooltip04" class="form-label">Type</label>
-                    <select class="form-select" id="validationTooltip04" required disabled={textState} onChange={(e) => { setRoomtype(e.target.value) }}>
-                        <option selected disabled>{roomtype}</option>
-                        <option>Delux</option>
-                        <option>Non-Delux</option>
-                    </select>
-                </div>
+                <label for="validationTooltip02" class="form-label">Contact Number</label>
+                    {/*<input type="text" class="form-control" id="validationTooltip02" required defaultValue={contactnumber}
+                        onChange={(e) => { setcontactnumber(e.target.value) }} disabled={textState}/>*/}
+
+                <PhoneInput
+                placeholder="Enter phone number" type="textarea" class="form-control" id="validationTooltip03"
+                value={contactnumber}
+                onChange={setcontactnumber}/>
+
+                
+                </div><br />
+
                    
                 <div class="col-md-6 position-relative">
-                    <label for="validationTooltip03" class="form-label">Facilities</label>
-                    <input type="text" class="form-control" id="validationTooltip03" required
-                        onChange={(e) => { setFacilities(e.target.value) }} defaultValue={facilities} disabled={textState}/>
-                </div>
+                <label for="validationTooltip02" class="form-label">Nic</label>
+                    <input type="text" class="form-control" id="validationTooltip02" required defaultValue={nic}
+                        onChange={(e) => { setnic(e.target.value) }} disabled={textState}/>
+                </div><br />
+                
                 <div class="col-md-6 position-relative">
-                    <label for="validationTooltip03" class="form-label">Rent per Day</label>
-                    <input type="text" class="form-control" id="validationTooltip03" disabled={textState} required defaultValue={rentperday}
-                        onChange={(e) => { setrentperday(e.target.value) }} />
+                <label for="validationTooltip04" class="form-label">Category</label>
+                    <select class="form-select" id="validationTooltip04" required disabled={textState} onChange={(e) => { setcategory(e.target.value) }}>
+                    <option selected disabled>{category}</option>
+                        <option>Food</option>
+                        <option>Furniture</option>
+                    </select>
                 </div>
 
-                <div class="col-md-5 position-relative">
-                    <label for="validationTooltip03" class="form-label">Description</label>
-                    <input type="text" class="form-control" id="validationTooltip03" disabled={textState} required defaultValue={description}
-                        onChange={(e) => { setDescription(e.target.value) }} />
+                <div class="col-md-6 position-relative">
+                    <label for="validationTooltip03" class="form-label">Company Name</label>
+                    <input type="text" class="form-control" id="validationTooltip03" required
+                        onChange={(e) => { setcompanyname(e.target.value) }} defaultValue={companyname} disabled={textState}/>
                 </div>
 
-                <div class="col-md-5 position-relative">
-                    <label for="validationTooltip03" class="form-label">Url 1</label>
-                    <input type="text" class="form-control" id="validationTooltip03" disabled={textState} required defaultValue={url1}
-                        onChange={(e) => { setUrl1(e.target.value) }} />
-                </div>
-
-                <div class="col-md-5 position-relative">
-                    <label for="validationTooltip03" class="form-label">Url 2</label>
-                    <input type="text" class="form-control" id="validationTooltip03" disabled={textState} required defaultValue={url2}
-                        onChange={(e) => { setUrl2(e.target.value) }} />
-                </div>
-
-                <div class="col-md-5 position-relative">
-                    <label for="validationTooltip03" class="form-label">Url 3</label>
-                    <input type="text" class="form-control" id="validationTooltip03" disabled={textState} required defaultValue={url3}
-                        onChange={(e) => { setUrl3(e.target.value) }} />
+                <div class="col-md-6 position-relative">
+                    <label for="validationTooltip03" class="form-label">Company Address</label>
+                    <input type="text" class="form-control" id="validationTooltip03" disabled={textState} required defaultValue={companyaddress}
+                        onChange={(e) => { setcompanyaddress(e.target.value) }} />
                 </div>
                 
 
@@ -250,6 +256,14 @@ export default function ViewOneRoom() {
                     <div class="col-12" id="btngrp" hidden={btngrpState2}  style={{marginTop:"5%"}}>
                         <button type="submit" class="btn btn-primary" onClick={(e) => { edit(e) }}> <i className="far fa-edit"></i> EDIT</button>&nbsp;&nbsp;&nbsp;
                         <button type="submit" class="btn btn-danger" onClick={(e) => { deleteUser(e) }}><i class="fa fa-trash"></i>  DELETE</button>
+
+
+
+
+
+
+
+
                     </div>
             </form>
             </div>

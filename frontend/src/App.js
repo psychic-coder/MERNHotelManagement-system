@@ -1,6 +1,7 @@
 
 import "./App.css";
 
+
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Topnav from './components/layouts/topnav'
 import EMPSideNav from './components/layouts/EMPsidenav'
@@ -19,10 +20,17 @@ import RestockInventory from "./components/inventory/RestockInventory";
 import CusLogin from "./components/auth/cusLogin";
 import CusReg from "./components/auth/CusRegister";
 
+import Supsidenav from './components/layouts/Supsidenav'
+import AddSupplier from './components/supplier/AddSupplier'
+import ViewSuppliers from './components/supplier/ViewAllSuppliers'
+import ViewOneSupplier from './components/supplier/ViewOneSupplier'
+import ViewAllSupplierHistoryRecords from './components/supplier/ViewAllSupplierHistoryRecords'
+
 import Home from "./pages/Home";
 import Rooms from "./pages/Rooms";
 import SingleRoom from "./pages/SingleRoom";
 import Error from "./pages/Error";
+import Dashboard from "./components/Dashboard";
 
 import EmpDetailsSideNav from './components/layouts/EmpDetailsSideNav'
 import ViewEmployee from './components/employee/ViewEmployee'
@@ -59,6 +67,14 @@ function App() {
       <Route exact path = "/roommanager/view"><ViewRooms/></Route>
       <Route exact path = "/roomManager/view/:id"><ViewOneRoom/></Route>
 
+      {/* Supplier Management Routes */}
+      <Route path = "/supmanager"><Supsidenav/></Route>
+      <Route exact path = "/supmanager/add"><AddSupplier/></Route>
+      <Route exact path = "/supmanager/view"><ViewSuppliers/></Route>
+      <Route exact path = "/supManager/view/:id"><ViewOneSupplier/></Route>
+      <Route exact path = "/supManager/supplierhistory"><Supsidenav/><ViewAllSupplierHistoryRecords/></Route>
+      
+
 
       {/* Employee Management Routes */}
       <Route path = "/empManager"><EmpDetailsSideNav/></Route>
@@ -82,6 +98,8 @@ function App() {
       <Route exact path = "/inventorymanager/view/:id"><ViewOneInventory/></Route>
       <Route exact path = "/inventorymanager/restock"><RestockInventory/></Route>
 
+      {/* Dashboard */}
+      <Route exact path = "/dashboard"><Dashboard/></Route>
       
     </BrowserRouter>
   );
