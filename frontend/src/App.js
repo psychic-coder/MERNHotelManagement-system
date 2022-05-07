@@ -23,6 +23,9 @@ import Rooms from "./pages/Rooms";
 import SingleRoom from "./pages/SingleRoom";
 import Error from "./pages/Error";
 
+import Bookings from './components/room/RoomBookings';
+import AllBookings from './components/room/ViewAllRoomBookings';
+
 
 
 
@@ -50,6 +53,10 @@ function App() {
       <Route exact path = "/roommanager/add"><AddRoom/></Route>
       <Route exact path = "/roommanager/view"><ViewRooms/></Route>
       <Route exact path = "/roomManager/view/:id"><ViewOneRoom/></Route>
+
+      {/* Room Booking Routes */}
+      <Route exact path = "/bookings"><Bookings/></Route>
+      <Route exact path = "/viewbookings"><AllBookings/></Route>
       
 
       {/* Inventory Management Routes */}

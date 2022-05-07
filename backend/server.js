@@ -45,6 +45,9 @@ app.use("/room", require("./routes/employee-manager/RoomRoute"));
 app.use("/inventory", require("./routes/inventory-manager/InventoryRoute"));
 
 
+//Room booking Routes
+app.use("/booking", require("./routes/room-booking/bookingRoute"));
+
 
 
 
