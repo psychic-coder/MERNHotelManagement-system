@@ -5,8 +5,21 @@ import axios from 'axios';
 import "./cuslogin.css"
 
 
-export default function cusLogin() {
-    return (
+export default function CusLogin() {
+
+    const [isLoading, setLoading] = useState(false);
+    const [cusemail, setcusemail] = useState("");
+    const [password, setpassword] = useState("");
+
+   
+
+        async function loginData(e){
+            setLoading(true)
+            const loginDetails = {cusemail,password}
+            const data =  (await axios.post("http://localhost:5000/customer/login", loginDetails)).status
+        }
+
+        return (
         <section class="vh-100">
 
             <div class="container-fluid h-custom">
@@ -22,17 +35,19 @@ export default function cusLogin() {
 
                             <div class="form-outline mb-4 mt-5">
                                 <input type="email" id="form3Example3" class="form-control form-control-lg"
-                                    placeholder="Email" />
+                                    placeholder="Email"   required
+                                    onChange={(e) => { setcusemail(e.target.value) }}/>
                             </div>
 
 
                             <div class="form-outline mb-3">
                                 <input type="password" id="form3Example4" class="form-control form-control-lg"
-                                    placeholder="Password" />
+                                    placeholder="Password" required
+                                    onChange={(e) => { setpassword(e.target.value) }}/>
                             </div>
 
                             <div class="text-center text-lg-start mt-4 pt-2 d-flex justify-content-start">
-                                <button type="button" class="btn btn-primary btn-lg">Login</button>
+                                <button type="button" class="btn btn-primary btn-lg" onClick={(e) => { loginData(e) }}>Login</button>
                                 <p class="small fw-bold mt-2 pt-1 mb-0 mx-5">Don't have an account? <a href="/cusreg"
                                     class="link-danger">Register</a></p>
                             </div>

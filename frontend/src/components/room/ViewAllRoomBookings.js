@@ -6,7 +6,7 @@ import validation from 'validator'
 import jspdf from 'jspdf'
 import "jspdf-autotable"
 
-export default function ViewAllInventory() {
+export default function ViewAllRoomBookings() {
 
     const [loaderStatus, setLoaderStatus] = useState(false);
     const [tebleStatus, setTableStatus] = useState(true);
@@ -15,9 +15,9 @@ export default function ViewAllInventory() {
     const [search, setsearch] = useState("");
     const [filtered, setfiltered] = useState([]);
 
-    const [AllInventory, setAllInventory] = useState([]);
+    const [AllBookings, setAllBookings] = useState([]);
 
-   
+
 
 
 
@@ -25,8 +25,8 @@ export default function ViewAllInventory() {
     useEffect(() => {
         async function getDetails() {
             try {
-                const result = await (await axios.get("http://localhost:5000/inventory/")).data.data
-                setAllInventory(result);
+                const result = await (await axios.get("http://localhost:5000/booking/")).data.data
+                setAllBookings(result);
                 setLoaderStatus(true)
                 setTableStatus(false)
                 console.log(result)
@@ -38,40 +38,37 @@ export default function ViewAllInventory() {
         getDetails();
     },[])
 
-    
-
 
     //This useEffect method is used to perform a searching function
     {useEffect(() => {
         setfiltered(
-            AllInventory.filter(items => {
-                return items.itemid.toLowerCase().includes(search.toLowerCase())
-                    || items.itemname.toLowerCase().includes(search.toLowerCase())
-                    || items.itemmodel.toLowerCase().includes(search.toLowerCase())
-                    || items.itemcategory.toLowerCase().includes(search.toLowerCase())
+            AllBookings.filter(items => {
+                return items.fname.toLowerCase().includes(search.toLowerCase())
+                    || items.lname.toLowerCase().includes(search.toLowerCase())
+                    || items.roomtype.toLowerCase().includes(search.toLowerCase())
+                    || items.email.toLowerCase().includes(search.toLowerCase())
             })
         )
 
-    }, [search, AllInventory])}
+    }, [search, AllBookings])}
 
 
     //This function used to generate a pdf
     function generatePDF(tickets) {
         const doc = new jspdf();
-        const tableColumn = ["Item ID", "Item Name", "Item Model", "Category", "Supplier", "Quantity","Unit price", "Date", "Restock level"];
+        const tableColumn = ["First Name", "Last Name", "Room Type", "No of Guests", "From","To", "Email","Contact"];
         const tableRows = [];
 
         tickets.slice(0).reverse().map(ticket => {
             const ticketData = [
-                ticket.itemid,
-                ticket.itemname,
-                ticket.itemmodel,
-                ticket.itemcategory,
-                ticket.supplier,
-                ticket.quantity,
-                ticket.unitprice,
-                ticket.itemdate,
-                ticket.restocklevel
+                ticket.fname,
+                ticket.lname,
+                ticket.roomtype,
+                ticket.noofguests,
+                
+                ticket.from,
+                ticket.to,
+               
             ];
             tableRows.push(ticketData);
         });
@@ -79,9 +76,9 @@ export default function ViewAllInventory() {
         doc.autoTable(tableColumn, tableRows, { styles: { fontSize: 8 }, startY: 35 });
         const date = Date().split(" ");
         const dateStr = date[1] + "-" + date[2] + "-" + date[3];
-        doc.text("Added-Inventory-Report", 14, 15).setFontSize(12);
+        doc.text("Room-Bookings-Report", 14, 15).setFontSize(12);
         doc.text(`Report Generated Date - ${dateStr} `, 14, 23);
-        doc.save(`Inventory-Details-Report_${dateStr}.pdf`);
+        doc.save(`Room-Booking-Report_${dateStr}.pdf`);
 
     }
 
@@ -103,7 +100,7 @@ export default function ViewAllInventory() {
                             <input className="form-control me-1" type="search" placeholder="Search" aria-label="Search"
                                 onChange={e => { setsearch(e.target.value) }} />
                         </form>
-                        <button type="button" class="btn btn-outline-danger" id="pdfButton" onClick={(e) => { generatePDF(AllInventory) }}><i className="fa fa-file-pdf"></i>  PDF</button>
+                        <button type="button" class="btn btn-outline-danger" id="pdfButton" onClick={(e) => { generatePDF(AllBookings) }}><i className="fa fa-file-pdf"></i>  PDF</button>
                     </div>
                 </nav><hr />
 
@@ -111,32 +108,31 @@ export default function ViewAllInventory() {
                     <table className="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">Item ID</th>
-                                <th scope="col">Item Name</th>
-                                <th scope="col">Item Model</th>
-                                <th scope="col">Category</th>
-                                <th scope="col">Restock Level</th>
-                                <th scope="col">Supplier</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Unit Price</th>
-                                <th scope="col">Item Date</th>
-                                <th></th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Room Type</th>
+                                <th scope="col">No of Guests</th>
+                                <th scope="col">From</th>
+                                <th scope="col">To</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Contact</th>
+            
+                                
                             </tr>
                         </thead>
                         <tbody>
 
-                            {filtered.slice(0).reverse().map((Inventory) => {
+                            {filtered.slice(0).reverse().map((Bookings) => {
                                 return <tr>
-                                    <td>{Inventory.itemid}</td>
-                                    <td>{Inventory.itemname}</td>
-                                    <td> {Inventory.itemmodel} </td>
-                                    <td>{Inventory.itemcategory}</td>
-                                    <td> {Inventory.restocklevel} </td>
-                                    <td>{Inventory.supplier}</td>
-                                    <td>{Inventory.quantity}</td>
-                                    <td>{Inventory.unitprice}</td>
-                                    <td>{Inventory.itemdate}</td>
-                                    <td><Link to={"/inventorymanager/view/" + Inventory._id} className="Edit"> <i className="far fa-edit"></i> </Link></td>
+                                    <td>{Bookings.fname}</td>
+                                    <td>{Bookings.lname}</td>
+                                    <td> {Bookings.roomtype} </td>
+                                    <td>{Bookings.noofguests}</td>
+                                    <td>{Bookings.from}</td>
+                                    <td>{Bookings.to}</td>
+                                    <td>{Bookings.email}</td>
+                                    <td>{Bookings.contactno}</td>
+                                    
                                 </tr>
 
                             })}

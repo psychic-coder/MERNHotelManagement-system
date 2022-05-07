@@ -6,7 +6,7 @@ import "./cuslogin.css"
 import 'react-phone-number-input/style.css'
 import PhoneInput  from 'react-phone-number-input' 
 
-export default function CusReg() {
+export default function AddReg() {
 
     const [isLoading, setLoading] = useState(false);
 
@@ -47,8 +47,10 @@ export default function CusReg() {
                     },
                 });
             } else {
-                const newDetails = {cusname, cusemail, phoneno, password}
+                let role = 'admin'
+                const newDetails = {cusname, cusemail, phoneno, password,role}
                 
+                //db
                 const data =  (await axios.post("http://localhost:5000/customer/", newDetails)).status
                 if (data === 200) {
                     SoloAlert.alert({
@@ -99,7 +101,6 @@ export default function CusReg() {
                                     placeholder="Email" required
                                     onChange={(e) => { setcusemail(e.target.value) }} />
                             </div>
-
 
 
                             <div class="form-outline mb-3">

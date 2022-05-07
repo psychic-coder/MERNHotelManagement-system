@@ -2,7 +2,7 @@
   "scripts": {
     "start": "node server",
     "server": "nodemon server",
-    "client": "npm run start --prefix frontend",
+    "client": "npm run starnpm run start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"cd ../frontend && npm start\""
   },
   "dependencies": {
@@ -12,10 +12,17 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "font-awesome": "^4.7.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
-  }
+  },
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

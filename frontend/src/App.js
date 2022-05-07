@@ -1,10 +1,11 @@
-import React from "react";
+
 import "./App.css";
 
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Topnav from './components/layouts/topnav'
 import EMPSideNav from './components/layouts/EMPsidenav'
+import React, { Component }  from 'react';
 
 import CusNavigation from './components/layouts/Navbar'
 import RMsidenav from './components/layouts/Roomsidenav'
@@ -19,13 +20,27 @@ import RestockInventory from "./components/inventory/RestockInventory";
 import CusLogin from "./components/auth/cusLogin";
 import CusReg from "./components/auth/CusRegister";
 
+import Supsidenav from './components/layouts/Supsidenav'
+import AddSupplier from './components/supplier/AddSupplier'
+import ViewSuppliers from './components/supplier/ViewAllSuppliers'
+import ViewOneSupplier from './components/supplier/ViewOneSupplier'
+import ViewAllSupplierHistoryRecords from './components/supplier/ViewAllSupplierHistoryRecords'
+
 import Home from "./pages/Home";
 import Rooms from "./pages/Rooms";
 import SingleRoom from "./pages/SingleRoom";
 import Error from "./pages/Error";
 import Dashboard from "./components/Dashboard";
 
+import EmpDetailsSideNav from './components/layouts/EmpDetailsSideNav'
+import ViewEmployee from './components/employee/ViewEmployee'
+import AddEmployee from './components/employee/AddEmployee'
+import ViewOneEmployee from './components/employee/ViewOneEmployee'
+import Bookings from './components/room/RoomBookings';
+import AllBookings from './components/room/ViewAllRoomBookings';
 
+import ViewPaidSalary from './components/employee/ViewPaidSalary'
+import AddPaidSalary from './components/employee/AddPaidSalary'
 
 
 function App() {
@@ -51,6 +66,29 @@ function App() {
       <Route exact path = "/roommanager/add"><AddRoom/></Route>
       <Route exact path = "/roommanager/view"><ViewRooms/></Route>
       <Route exact path = "/roomManager/view/:id"><ViewOneRoom/></Route>
+
+      {/* Supplier Management Routes */}
+      <Route path = "/supmanager"><Supsidenav/></Route>
+      <Route exact path = "/supmanager/add"><AddSupplier/></Route>
+      <Route exact path = "/supmanager/view"><ViewSuppliers/></Route>
+      <Route exact path = "/supManager/view/:id"><ViewOneSupplier/></Route>
+      <Route exact path = "/supManager/supplierhistory"><Supsidenav/><ViewAllSupplierHistoryRecords/></Route>
+      
+
+
+      {/* Employee Management Routes */}
+      <Route path = "/empManager"><EmpDetailsSideNav/></Route>
+      <Route exact path = "/empManager/add"><AddEmployee/></Route>
+      <Route exact path = "/empManager/view"><ViewEmployee/></Route>
+      <Route exact path = "/empManager/view/:id"><ViewOneEmployee/></Route>
+      
+      <Route exact path = "/paidsalManager/view"><EmpDetailsSideNav/><ViewPaidSalary/></Route>
+      <Route exact path = "/paidsalManager/add"><EmpDetailsSideNav/><AddPaidSalary/></Route>
+      
+
+      {/* Room Booking Routes */}
+      <Route exact path = "/bookings"><Bookings/></Route>
+      <Route exact path = "/viewbookings"><AllBookings/></Route>
       
 
       {/* Inventory Management Routes */}

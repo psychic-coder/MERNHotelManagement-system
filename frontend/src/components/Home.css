@@ -57,7 +57,7 @@ body{
   
   
   .Edit{
-    color: white;
+    color: black;
     background-color: transparent;
     border: none;
   }
@@ -79,4 +79,8 @@ body{
   #inputForm2{
     margin-left: 10%;
     margin-top: 3.5%;
+  }
+  .App {
+    font-family: sans-serif;
+    text-align: center;
   }
