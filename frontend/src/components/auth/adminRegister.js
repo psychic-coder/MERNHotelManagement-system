@@ -47,6 +47,7 @@ export default function AddReg() {
                     },
                 });
             } else {
+                //role
                 let role = 'admin'
                 const newDetails = {cusname, cusemail, phoneno, password,role}
                 
