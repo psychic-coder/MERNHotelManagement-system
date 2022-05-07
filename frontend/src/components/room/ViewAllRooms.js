@@ -35,20 +35,24 @@ export default function ViewAllRooms() {
         }
 
         getDetails();
-    })
+    }, [])
+
 
 
     //This useEffect method is used to perform a searching function
-    useEffect(() => {
-        setfiltered(
-            AllRooms.filter(items => {
-                return items.roomname.toLowerCase().includes(search.toLowerCase())
-                    || items.noOfguests.toLowerCase().includes(search.toLowerCase())
-                    || items.roomtype.toLowerCase().includes(search.toLowerCase())
-            })
-        )
+    {
+        useEffect(() => {
+            setfiltered(
+                AllRooms.filter(items => {
+                    return items.roomname.toLowerCase().includes(search.toLowerCase())
+                        || items.noOfguests.toLowerCase().includes(search.toLowerCase())
+                        || items.roomtype.toLowerCase().includes(search.toLowerCase())
+                        || items.facilities.toLowerCase().includes(search.toLowerCase())
+                })
+            )
 
-    }, [search, AllRooms])
+        }, [search, AllRooms])
+    }
 
 
     //This function used to generate a pdf
@@ -108,7 +112,7 @@ export default function ViewAllRooms() {
                                 <th scope="col">No of Guests</th>
                                 <th scope="col">Type</th>
                                 <th scope="col">Facilities</th>
-                                <th scope="col">Rent Per Day</th>
+                                <th scope="col">Rent Per Day(Rs)</th>
                                 <th scope="col">Description</th>
                                 <th></th>
                             </tr>

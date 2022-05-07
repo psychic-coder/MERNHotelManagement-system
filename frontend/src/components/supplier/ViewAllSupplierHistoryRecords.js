@@ -27,7 +27,7 @@ export default function ViewAllSupplierHistoryRecords() {
     useEffect(() => {
         async function getDetails() {
             try {
-                const result = await (await axios.get("http://localhost:5001/supplierhistory//")).data.data
+                const result = await (await axios.get("http://localhost:5000/supplierhistory//")).data.data
                 setAllSuppliers(result);
                 setLoaderStatus(true)
                 setTableStatus(false)

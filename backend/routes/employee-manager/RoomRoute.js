@@ -48,7 +48,7 @@ router.route("/:id").put(async(req,res)=>{
         
     }
 
-    const update = await Rooms.findByIdAndUpdate(roomID,updateRoom ).then(()=>{
+    const update = await Room.findByIdAndUpdate(roomID,updateRoom ).then(()=>{
         res.status(200).send({status: "Room details are updated"});
     }).catch((e)=>{
      //console.log.(err.message);

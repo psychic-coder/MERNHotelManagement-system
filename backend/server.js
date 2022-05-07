@@ -14,7 +14,7 @@ app.use(cors({
     credentials:true
 }));
 
-const PORT = process.env.PORT||5001;
+const PORT = process.env.PORT||5000;
 app.listen(PORT,()=>{
     console.log(`Server start on port : ${PORT}`)
 })
@@ -44,6 +44,24 @@ app.use("/supplier", require("./routes/supplier-manager/SupplierRoute"));
 
 //Supplier history routes
 app.use("/supplierhistory", require("./routes/supplier-manager/supplierhistoryRoute"));
+
+//api for employee managemet Thilan
+const employeesRouter = require('./routes/emp-manager/employees.js');
+app.use('/employees',employeesRouter);
+const paidsalariesRouter = require('./routes/emp-manager/paidsalaries.js');
+app.use('/paidsalaries',paidsalariesRouter);
+const adminloginRouter = require('./routes/adminlogin.js');
+app.use('/adminlogin',adminloginRouter);
+
+//Inventory Manager Routes
+app.use("/inventory", require("./routes/inventory-manager/InventoryRoute"));
+
+
+//Customer Routes
+ app.use("/customer", require("./routes/customer/customerRoute"));
+
+//Room booking Routes
+app.use("/booking", require("./routes/room-booking/bookingRoute"));
 
 
 

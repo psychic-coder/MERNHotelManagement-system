@@ -1,10 +1,10 @@
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
 body{
-    background-color: rgb(247, 232, 232);
+    background-color: white;
   }
   
   div.content {
-      margin-top: 200px;
+      margin-top: 50px;
       margin-left: 230px;
       padding: 1px 16px;
       height: 1000px;
@@ -57,7 +57,7 @@ body{
   
   
   .Edit{
-    color: white;
+    color: black;
     background-color: transparent;
     border: none;
   }
@@ -79,4 +79,8 @@ body{
   #inputForm2{
     margin-left: 10%;
     margin-top: 3.5%;
+  }
+  .App {
+    font-family: sans-serif;
+    text-align: center;
   }
