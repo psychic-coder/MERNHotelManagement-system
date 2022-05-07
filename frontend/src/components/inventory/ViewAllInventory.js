@@ -25,7 +25,7 @@ export default function ViewAllInventory() {
     useEffect(() => {
         async function getDetails() {
             try {
-                const result = await (await axios.get("http://localhost:5000/inventory/")).data.data
+                const result = await (await axios.get("http://localhost:5001/inventory/")).data.data
                 setAllInventory(result);
                 setLoaderStatus(true)
                 setTableStatus(false)
