@@ -52,7 +52,7 @@ export default function RoomBookings() {
                     fname, lname, roomtype, noofguests, from,to, email, contactno
                 }
                 
-                const data =  (await axios.post("http://localhost:5000/booking/", newDetails)).status
+                const data =  (await axios.post("http://localhost:5001/booking/", newDetails)).status
                 if (data === 200) {
                     SoloAlert.alert({
                         title: "Welcome!",

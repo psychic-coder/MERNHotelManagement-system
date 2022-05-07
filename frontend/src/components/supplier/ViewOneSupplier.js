@@ -36,7 +36,7 @@ export default function ViewOneSupplier() {
     useEffect(() => {
         async function getDetails() {
             try {
-                const result = await (await axios.get(`http://localhost:5000/supplier/${id}`)).data.data
+                const result = await (await axios.get(`http://localhost:5001/supplier/${id}`)).data.data
 
                 setsupid(result[0].supid); 
                 setsupname(result[0].supname);
@@ -50,7 +50,7 @@ export default function ViewOneSupplier() {
 
                 setLoaderStatus(true)
                 setTableStatus(false)
-                console.log(supname, email)
+                console.log(supid, email)
             } catch (err) {
                 console.log(err.message)
             }
