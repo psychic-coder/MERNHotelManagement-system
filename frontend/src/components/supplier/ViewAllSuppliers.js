@@ -44,7 +44,7 @@ export default function ViewAllSuppliers() {
     useEffect(() => {
         setfiltered(
             AllSuppliers.filter(items => {
-                return items.supname.toLowerCase().includes(search.toLowerCase())
+                return items.supid.toLowerCase().includes(search.toLowerCase())
                     || items.email.toLowerCase().includes(search.toLowerCase())
                     || items.contactnumber.toLowerCase().includes(search.toLowerCase())
                     

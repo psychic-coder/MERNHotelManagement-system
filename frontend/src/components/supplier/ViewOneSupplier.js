@@ -50,7 +50,7 @@ export default function ViewOneSupplier() {
 
                 setLoaderStatus(true)
                 setTableStatus(false)
-                console.log(supname, email)
+                console.log(supid, email)
             } catch (err) {
                 console.log(err.message)
             }
