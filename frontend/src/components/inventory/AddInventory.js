@@ -37,10 +37,10 @@ export default function AddInventory() {
                 });
             } else {
                 const newDetails = {
-                    itemid, itemname, itemmodel, itemcategory, restocklevel, supplier, quantity, unitprice,itemdate
+                    itemid, itemname, itemmodel, itemcategory, restocklevel, supplier, quantity, unitprice, itemdate
                 }
-                
-                const data =  (await axios.post("http://localhost:5000/inventory/", newDetails)).status
+
+                const data = (await axios.post("http://localhost:5000/inventory/", newDetails)).status
                 if (data === 200) {
                     SoloAlert.alert({
                         title: "Welcome!",
@@ -80,7 +80,7 @@ export default function AddInventory() {
                         onChange={(e) => { setitemname(e.target.value) }} />
                 </div>
 
-                
+
 
                 <div class="col-md-5 position-relative">
                     <label for="validationTooltip04" class="form-label">Category</label>
@@ -90,16 +90,16 @@ export default function AddInventory() {
                         <option>Furniture</option>
                         <option>Utilities</option>
                     </select>
-    </div>
-               
-               
+                </div>
+
+
                 <div class="col-md-5 position-relative">
                     <label for="validationTooltip01" class="form-label">Item Model</label>
                     <input type="text" class="form-control" id="validationTooltip01" required
                         onChange={(e) => { setitemmodel(e.target.value) }} />
                 </div>
 
-              
+
 
                 <br />
                 <div class="col-md-5 position-relative">
@@ -107,8 +107,8 @@ export default function AddInventory() {
                     <input type="number" class="form-control" id="validationTooltip03" required
                         onChange={(e) => { setrestocklevel(e.target.value) }} />
                 </div>
-              
-               
+
+
                 <div class="col-md-5 position-relative">
                     <label for="validationTooltip03" class="form-label">Supplier</label>
                     <input type="textarea" class="form-control" id="validationTooltip03" required
@@ -132,7 +132,7 @@ export default function AddInventory() {
                     <input type="date" class="form-control" id="validationTooltip03" required
                         onChange={(e) => { setitemdate(e.target.value) }} />
                 </div>
-                
+
 
 
                 <div class="col-12" style={{ marginTop: "50px", marginLeft: "65%" }}>
