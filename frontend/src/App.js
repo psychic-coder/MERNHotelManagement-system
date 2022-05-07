@@ -1,4 +1,4 @@
-import React from "react";
+
 import "./App.css";
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
@@ -24,15 +24,12 @@ import Rooms from "./pages/Rooms";
 import SingleRoom from "./pages/SingleRoom";
 import Error from "./pages/Error";
 
-<<<<<<< HEAD
 import EmpDetailsSideNav from './components/layouts/EmpDetailsSideNav'
 import ViewEmployee from './components/employee/ViewEmployee'
 import AddEmployee from './components/employee/AddEmployee'
 import ViewOneEmployee from './components/employee/ViewOneEmployee'
-=======
 import Bookings from './components/room/RoomBookings';
 import AllBookings from './components/room/ViewAllRoomBookings';
->>>>>>> main
 
 import ViewPaidSalary from './components/employee/ViewPaidSalary'
 import AddPaidSalary from './components/employee/AddPaidSalary'
@@ -62,7 +59,6 @@ function App() {
       <Route exact path = "/roommanager/view"><ViewRooms/></Route>
       <Route exact path = "/roomManager/view/:id"><ViewOneRoom/></Route>
 
-<<<<<<< HEAD
 
       {/* Employee Management Routes */}
       <Route path = "/empManager"><EmpDetailsSideNav/></Route>
@@ -74,7 +70,6 @@ function App() {
       <Route exact path = "/paidsalManager/add"><EmpDetailsSideNav/><AddPaidSalary/></Route>
       
 
-=======
       {/* Room Booking Routes */}
       <Route exact path = "/bookings"><Bookings/></Route>
       <Route exact path = "/viewbookings"><AllBookings/></Route>
@@ -88,7 +83,6 @@ function App() {
       <Route exact path = "/inventorymanager/restock"><RestockInventory/></Route>
 
       
->>>>>>> main
     </BrowserRouter>
   );
 }
