@@ -40,6 +40,7 @@ mongoose
 app.use("/room", require("./routes/employee-manager/RoomRoute"));
 
 
+<<<<<<< HEAD
 //api for employee managemet Thilan
 const employeesRouter = require('./routes/emp-manager/employees.js');
 app.use('/employees',employeesRouter);
@@ -47,6 +48,16 @@ const paidsalariesRouter = require('./routes/emp-manager/paidsalaries.js');
 app.use('/paidsalaries',paidsalariesRouter);
 const adminloginRouter = require('./routes/adminlogin.js');
 app.use('/adminlogin',adminloginRouter);
+=======
+
+//Inventory Manager Routes
+app.use("/inventory", require("./routes/inventory-manager/InventoryRoute"));
+
+
+//Room booking Routes
+app.use("/booking", require("./routes/room-booking/bookingRoute"));
+
+>>>>>>> main
 
 
 

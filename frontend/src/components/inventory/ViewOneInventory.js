@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import axios from 'axios';
 
 
-export default function ViewOneRoom() {
+export default function ViewOneInventory() {
 
     const [isLoading, setLoading] = useState(false);
 
@@ -19,15 +19,15 @@ export default function ViewOneRoom() {
 
 
 
-    const [roomname, setRoomname] = useState("");
-    const [noOfguests, setnoOfguests] = useState("");
-    const [roomtype, setRoomtype] = useState("");
-    const [facilities, setFacilities] = useState("");
-    const [rentperday, setrentperday] = useState("");
-    const [description, setDescription] = useState("");
-    const [url1, setUrl1] = useState("");
-    const [url2, setUrl2] = useState("");
-    const [url3, setUrl3] = useState("");
+    const [itemid, setitemid] = useState("");
+    const [itemname, setitemname] = useState("");
+    const [itemmodel, setitemmodel] = useState("");
+    const [itemcategory, setitemcategory] = useState("");
+    const [restocklevel, setrestocklevel] = useState("");
+    const [supplier, setsupplier] = useState("");
+    const [quantity, setquantity] = useState("");
+    const [unitprice, setunitprice] = useState("");
+    const [itemdate, setitemdate] = useState("");
 
 
     const { id } = useParams();
@@ -36,20 +36,20 @@ export default function ViewOneRoom() {
     useEffect(() => {
         async function getDetails() {
             try {
-                const result = await (await axios.get(`http://localhost:5000/room/${id}`)).data.data
-                setRoomname(result[0].roomname);
-                setnoOfguests(result[0].noOfguests)
-                setRoomtype(result[0].roomtype);
-                setFacilities(result[0].facilities)
-                setrentperday(result[0].rentperday);
-                setDescription(result[0].description)
-                setUrl1(result[0].url1);
-                setUrl2(result[0].url2)
-                setUrl3(result[0].url3);
+                const result = await (await axios.get(`http://localhost:5000/inventory/${id}`)).data.data
+                setitemid(result[0].itemid);
+                setitemname(result[0].itemname)
+                setitemmodel(result[0].itemmodel);
+                setitemcategory(result[0].itemcategory)
+                setrestocklevel(result[0].restocklevel);
+                setsupplier(result[0].supplier)
+                setquantity(result[0].quantity);
+                setunitprice(result[0].unitprice)
+                setitemdate(result[0].itemdate);
 
                 setLoaderStatus(true)
                 setTableStatus(false)
-                console.log(roomname, roomtype)
+                console.log(itemid, itemmodel)
             } catch (err) {
                 console.log(err.message)
             }
@@ -64,9 +64,9 @@ export default function ViewOneRoom() {
         try {
             e.preventDefault();
             const newDetails = {
-                roomname, noOfguests, roomtype, facilities, rentperday, description, url1, url2, url3
+                itemid, itemname, itemmodel, itemcategory, restocklevel, supplier, quantity, unitprice, itemdate
             }
-            const data = await (await axios.put(`http://localhost:5000/room/${id}`, newDetails)).status
+            const data = await (await axios.put(`http://localhost:5000/inventory/${id}`, newDetails)).status
             if (data === 200) {
                 SoloAlert.alert({
                     title: "Welcome!",
@@ -124,7 +124,7 @@ export default function ViewOneRoom() {
             onOk: async function () {
 
                 try {
-                    const result = await (await axios.delete(`http://localhost:5000/room/${id}`)).status
+                    const result = await (await axios.delete(`http://localhost:5000/inventory/${id}`)).status
                     console.log(result)
 
                     if (result === 200) {
@@ -135,7 +135,7 @@ export default function ViewOneRoom() {
                             theme: "dark",
                             useTransparency: true,
                             onOk: function () {
-                                window.location = "/roommanager/view"
+                                window.location = "/inventorymanager/view"
                             },
 
                         });
@@ -183,62 +183,63 @@ export default function ViewOneRoom() {
 
 
             <div hidden={tebleStatus}>
-                <h3>Edit/Delete Room</h3><hr />
+                <h3>Edit/Delete Inventory</h3><hr />
                 <form class="row g-3 needs-validation" id="inputForm2" novalidate>
-                <div class="col-md-6 position-relative">
-                    <label for="validationTooltip01" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="validationTooltip01" required defaultValue={roomname}
-                        onChange={(e) => { setRoomname(e.target.value) }} disabled={textState}/>
+                <div class="col-md-5 position-relative">
+                    <label for="validationTooltip01" class="form-label">Item ID</label>
+                    <input type="text" class="form-control" id="validationTooltip01" required defaultValue={itemid}
+                        onChange={(e) => { setitemid(e.target.value) }} disabled={textState}/>
                 </div>
 
-                <div class="col-md-6 position-relative">
-                    <label for="validationTooltip02" class="form-label">No of Guests</label>
-                    <input type="number" class="form-control" id="validationTooltip02" required defaultValue={noOfguests}
-                        onChange={(e) => { setnoOfguests(e.target.value) }} disabled={textState}/>
+                <div class="col-md-5 position-relative">
+                    <label for="validationTooltip02" class="form-label">Item Name</label>
+                    <input type="text" class="form-control" id="validationTooltip02" required defaultValue={itemname}
+                        onChange={(e) => { setitemname(e.target.value) }} disabled={textState}/>
                 </div><br />
                
-                <div class="col-md-6 position-relative">
-                    <label for="validationTooltip04" class="form-label">Type</label>
-                    <select class="form-select" id="validationTooltip04" required disabled={textState} onChange={(e) => { setRoomtype(e.target.value) }}>
-                        <option selected disabled>{roomtype}</option>
-                        <option>Delux</option>
-                        <option>Non-Delux</option>
+                <div class="col-md-5 position-relative">
+                    <label for="validationTooltip04" class="form-label">Category</label>
+                    <select class="form-select" id="validationTooltip04" required disabled={textState} onChange={(e) => { setitemcategory(e.target.value) }}>
+                        <option selected disabled>{itemmodel}</option>
+                        <option>Kitchen</option>
+                        <option>Furniture</option>
+                        <option>Utilities</option>
                     </select>
                 </div>
                    
-                <div class="col-md-6 position-relative">
-                    <label for="validationTooltip03" class="form-label">Facilities</label>
+                <div class="col-md-5 position-relative">
+                    <label for="validationTooltip03" class="form-label">Item Model</label>
                     <input type="text" class="form-control" id="validationTooltip03" required
-                        onChange={(e) => { setFacilities(e.target.value) }} defaultValue={facilities} disabled={textState}/>
+                        onChange={(e) => { setitemmodel(e.target.value) }} defaultValue={itemcategory} disabled={textState}/>
                 </div>
-                <div class="col-md-6 position-relative">
-                    <label for="validationTooltip03" class="form-label">Rent per Day</label>
-                    <input type="text" class="form-control" id="validationTooltip03" disabled={textState} required defaultValue={rentperday}
-                        onChange={(e) => { setrentperday(e.target.value) }} />
+                <div class="col-md-5 position-relative">
+                    <label for="validationTooltip03" class="form-label">Restock Level</label>
+                    <input type="number" class="form-control" id="validationTooltip03" disabled={textState} required defaultValue={restocklevel}
+                        onChange={(e) => { setrestocklevel(e.target.value) }} />
                 </div>
 
                 <div class="col-md-5 position-relative">
-                    <label for="validationTooltip03" class="form-label">Description</label>
-                    <input type="text" class="form-control" id="validationTooltip03" disabled={textState} required defaultValue={description}
-                        onChange={(e) => { setDescription(e.target.value) }} />
+                    <label for="validationTooltip03" class="form-label">Supplier</label>
+                    <input type="text" class="form-control" id="validationTooltip03" disabled={textState} required defaultValue={supplier}
+                        onChange={(e) => { setsupplier(e.target.value) }} />
                 </div>
 
                 <div class="col-md-5 position-relative">
-                    <label for="validationTooltip03" class="form-label">Url 1</label>
-                    <input type="text" class="form-control" id="validationTooltip03" disabled={textState} required defaultValue={url1}
-                        onChange={(e) => { setUrl1(e.target.value) }} />
+                    <label for="validationTooltip03" class="form-label">Quantity</label>
+                    <input type="number" class="form-control" id="validationTooltip03" disabled={textState} required defaultValue={quantity}
+                        onChange={(e) => { setquantity(e.target.value) }} />
                 </div>
 
                 <div class="col-md-5 position-relative">
-                    <label for="validationTooltip03" class="form-label">Url 2</label>
-                    <input type="text" class="form-control" id="validationTooltip03" disabled={textState} required defaultValue={url2}
-                        onChange={(e) => { setUrl2(e.target.value) }} />
+                    <label for="validationTooltip03" class="form-label">Unit Price</label>
+                    <input type="number" class="form-control" id="validationTooltip03" disabled={textState} required defaultValue={unitprice}
+                        onChange={(e) => { setunitprice(e.target.value) }} />
                 </div>
 
                 <div class="col-md-5 position-relative">
-                    <label for="validationTooltip03" class="form-label">Url 3</label>
-                    <input type="text" class="form-control" id="validationTooltip03" disabled={textState} required defaultValue={url3}
-                        onChange={(e) => { setUrl3(e.target.value) }} />
+                    <label for="validationTooltip03" class="form-label">Date</label>
+                    <input type="date" class="form-control" id="validationTooltip03" disabled={textState} required defaultValue={itemdate}
+                        onChange={(e) => { setitemdate(e.target.value) }} />
                 </div>
                 
 
