@@ -5,6 +5,11 @@ const customerSchema = new mongoose.Schema({
     cusemail : { type: String, required : true },
     phoneno : { type: String, required : true },
     password : { type: String, required : true },
+    role: {
+        type: String,
+        enum: ['admin', 'customer', 'roommanager', 'inventorymanager','suppliermanager'],
+        default: 'customer'
+    },
 });
 
 const customer = mongoose.model('customer', customerSchema);
