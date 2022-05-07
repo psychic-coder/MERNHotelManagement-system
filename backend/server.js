@@ -52,6 +52,9 @@ app.use('/adminlogin',adminloginRouter);
 app.use("/inventory", require("./routes/inventory-manager/InventoryRoute"));
 
 
+//Customer Routes
+ app.use("/customer", require("./routes/customer/customerRoute"));
+
 //Room booking Routes
 app.use("/booking", require("./routes/room-booking/bookingRoute"));
 

@@ -17,7 +17,7 @@ export default function ViewAllInventory() {
 
     const [AllInventory, setAllInventory] = useState([]);
 
-
+   
 
 
 
@@ -37,6 +37,8 @@ export default function ViewAllInventory() {
 
         getDetails();
     },[])
+
+    
 
 
     //This useEffect method is used to perform a searching function
