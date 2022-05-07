@@ -11,15 +11,26 @@ export default function CusLogin() {
     const [cusemail, setcusemail] = useState("");
     const [password, setpassword] = useState("");
 
-   
 
-        async function loginData(e){
-            setLoading(true)
-            const loginDetails = {cusemail,password}
-            const data =  (await axios.post("http://localhost:5000/customer/login", loginDetails)).status
+
+    async function loginData(e) {
+        setLoading(true)
+        try {
+            const loginDetails = { cusemail, password }
+            const data = (await axios.post("http://localhost:5000/customer/login", loginDetails)).data
+            console.log(data)
+            if(data.status.role === 'customer'){
+                window.location = '/rooms'
+            }else{
+                window.location = '/dashboard'
+            }
+
+        } catch (e) {
+            alert('unautherized user')
         }
+    }
 
-        return (
+    return (
         <section class="vh-100">
 
             <div class="container-fluid h-custom">
@@ -35,15 +46,15 @@ export default function CusLogin() {
 
                             <div class="form-outline mb-4 mt-5">
                                 <input type="email" id="form3Example3" class="form-control form-control-lg"
-                                    placeholder="Email"   required
-                                    onChange={(e) => { setcusemail(e.target.value) }}/>
+                                    placeholder="Email" required
+                                    onChange={(e) => { setcusemail(e.target.value) }} />
                             </div>
 
 
                             <div class="form-outline mb-3">
                                 <input type="password" id="form3Example4" class="form-control form-control-lg"
                                     placeholder="Password" required
-                                    onChange={(e) => { setpassword(e.target.value) }}/>
+                                    onChange={(e) => { setpassword(e.target.value) }} />
                             </div>
 
                             <div class="text-center text-lg-start mt-4 pt-2 d-flex justify-content-start">
