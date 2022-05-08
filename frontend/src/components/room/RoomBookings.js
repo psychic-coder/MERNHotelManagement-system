@@ -94,11 +94,15 @@ export default function RoomBookings() {
                 </div>
 
                 <div class="col-md-6 position-relative">
-                    <label for="validationTooltip04" class="form-label">Type</label>
+                    <label for="validationTooltip04" class="form-label">Room Type</label>
                     <select class="form-select" id="validationTooltip04" required onChange={(e) => { setroomtype(e.target.value) }}>
                         <option selected disabled value="">Choose...</option>
-                        <option>Delux</option>
-                        <option>Non-Delux</option>
+                        <option>Single Standard</option>
+                        <option>Single Delux</option>
+                        <option>Double Standard</option>
+                        <option>Double Delux</option>
+                        <option>Superior Standard</option>
+                        <option>Superior Delux</option>
                     </select>
                 </div>
 

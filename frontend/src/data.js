@@ -3,11 +3,11 @@ import room2 from "./images/details-2.jpeg";
 import room3 from "./images/details-3.jpeg";
 import room4 from "./images/details-4.jpeg";
 import img1 from "./images/room-1.jpeg";
-import img2 from "./images/room-2.jpeg";
-import img3 from "./images/room-3.jpeg";
-import img4 from "./images/room-4.jpeg";
-import img5 from "./images/room-5.jpeg";
-import img6 from "./images/room-6.jpeg";
+import img2 from "./images/Single-Delux.jpeg";
+import img3 from "./images/Double-Standard.jpeg";
+import img4 from "./images/Double-Delux.jpeg";
+import img5 from "./images/Single-Standard.jpeg";
+import img6 from "./images/Superior-Delux.jpeg";
 
 
 export default [
@@ -187,8 +187,8 @@ export default [
       id: "4"
     },
     fields: {
-      name: "single deluxe",
-      slug: "single-deluxe",
+      name: "Double Delux",
+      slug: "Double-Delux",
       type: "single",
       price: 4500.00,
       size: 400,
@@ -244,8 +244,8 @@ export default [
       id: "5"
     },
     fields: {
-      name: "Double Delux",
-      slug: "Double-Delux",
+      name: "Superior Standard",
+      slug: "Superior-Standard",
       type: "double",
       price: 5500.00,
       size: 300,
@@ -301,8 +301,8 @@ export default [
       id: "6"
     },
     fields: {
-      name: "Superior Standard",
-      slug: "Superior-Standard",
+      name: "Superior Delux",
+      slug: "Superior-Delux",
       type: "double",
       price: 6500.00,
       size: 350,
