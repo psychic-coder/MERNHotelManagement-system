@@ -65,9 +65,10 @@ export default function ViewAllRoomBookings() {
                 ticket.lname,
                 ticket.roomtype,
                 ticket.noofguests,
-                
                 ticket.from,
                 ticket.to,
+                ticket.email,
+                ticket.contactno,
                
             ];
             tableRows.push(ticketData);
