@@ -1,4 +1,6 @@
--- Create User table
+
+CREATE DATABASE ieeecs WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'English_India.1252';
+
 CREATE TABLE "User" (
     user_id SERIAL PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
@@ -8,7 +10,7 @@ CREATE TABLE "User" (
     address TEXT
 );
 
--- Create Staff table
+
 CREATE TABLE Staff (
     staff_id SERIAL PRIMARY KEY,
     fname VARCHAR(50) NOT NULL,
@@ -21,7 +23,7 @@ CREATE TABLE Staff (
     experience TEXT
 );
 
--- Create Admin table
+
 CREATE TABLE Admin (
     admin_id SERIAL PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
@@ -31,7 +33,7 @@ CREATE TABLE Admin (
     role VARCHAR(50)
 );
 
--- Create Rooms table
+
 CREATE TABLE Rooms (
     room_id SERIAL PRIMARY KEY,
     type VARCHAR(50) NOT NULL,
@@ -39,7 +41,7 @@ CREATE TABLE Rooms (
     status VARCHAR(20) NOT NULL
 );
 
--- Create Booking table
+
 CREATE TABLE Booking (
     booking_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES "User"(user_id),
@@ -49,14 +51,14 @@ CREATE TABLE Booking (
     total_price DECIMAL(10, 2) NOT NULL
 );
 
--- Create Booking_Room junction table
+
 CREATE TABLE Booking_Room (
     booking_room_id SERIAL PRIMARY KEY,
     booking_id INT REFERENCES Booking(booking_id),
     room_id INT REFERENCES Rooms(room_id)
 );
 
--- Create Payment table
+
 CREATE TABLE Payment (
     payment_id SERIAL PRIMARY KEY,
     booking_id INT REFERENCES Booking(booking_id),
@@ -65,14 +67,14 @@ CREATE TABLE Payment (
     payment_status VARCHAR(20) NOT NULL
 );
 
--- Create Admin_Panel table
+
 CREATE TABLE Admin_Panel (
     panel_id SERIAL PRIMARY KEY,
     admin_id INT REFERENCES Admin(admin_id),
     actions TEXT
 );
 
--- Add foreign key constraints
+
 ALTER TABLE Booking ADD CONSTRAINT fk_staff_id FOREIGN KEY (staff_id) REFERENCES Staff(staff_id);
 ALTER TABLE Admin_Panel ADD CONSTRAINT fk_admin_id FOREIGN KEY (admin_id) REFERENCES Admin(admin_id);
 ALTER TABLE "User" ADD COLUMN admin BOOLEAN DEFAULT false;
