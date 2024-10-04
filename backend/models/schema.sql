@@ -75,3 +75,4 @@ CREATE TABLE Admin_Panel (
 -- Add foreign key constraints
 ALTER TABLE Booking ADD CONSTRAINT fk_staff_id FOREIGN KEY (staff_id) REFERENCES Staff(staff_id);
 ALTER TABLE Admin_Panel ADD CONSTRAINT fk_admin_id FOREIGN KEY (admin_id) REFERENCES Admin(admin_id);
+ALTER TABLE "User" ADD COLUMN admin BOOLEAN DEFAULT false;
